@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/02/11 17:29:24 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/02/11 17:42:58 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ typedef struct	s_data
 	void		*win;
 	t_screen	screen;
 }	t_data;
-
 
 void	init(t_data *data, char *argv[]);
 void	purge(t_data *data);
