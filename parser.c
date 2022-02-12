@@ -6,7 +6,7 @@
 /*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 09:49:20 by lhorefto          #+#    #+#             */
-/*   Updated: 2022/02/12 16:16:18 by lhorefto         ###   ########.fr       */
+/*   Updated: 2022/02/12 17:58:54 by lhorefto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,16 @@ static bool	get_light(char **line, t_light *light)
 
 	if (ft_2darr_len(line) != 3)
 		return (berror("Error\n wrong light data!"));
-	ra = atof(line[2]);
+	ra = ft_atof(line[2]);
 	if (ra < 0.0 || ra > 1.0)
 		return (berror("Error\n wrong light ratio!"));
 	light->ratio = ra;
 	xyz = ft_split(line[1], ',');
 	if (ft_2darr_len(xyz) != 3)
 		return (berror("Error\n wrong light coordinates!"));
-	light->x = atof(xyz[0]);
-	light->y = atof(xyz[1]);
-	light->z = atof(xyz[2]);
+	light->x = ft_atof(xyz[0]);
+	light->y = ft_atof(xyz[1]);
+	light->z = ft_atof(xyz[2]);
 	free_2darr(xyz, 3);
 	free_2darr(line, 3);
 	return (true);

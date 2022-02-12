@@ -6,7 +6,7 @@
 /*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 19:27:18 by flormich          #+#    #+#             */
-/*   Updated: 2022/02/12 12:45:41 by lhorefto         ###   ########.fr       */
+/*   Updated: 2022/02/12 17:48:38 by lhorefto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int		ft_2darr_len(char **arr2d);
 int		ft_len_until_char(char *s, char c);
 int		ft_revlen_until_char(char *s, char c);
+double	ft_atof(char *str);
 
 #endif
