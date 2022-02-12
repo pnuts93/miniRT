@@ -6,7 +6,7 @@
 /*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/02/12 12:32:30 by lhorefto         ###   ########.fr       */
+/*   Updated: 2022/02/12 16:15:41 by lhorefto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,8 @@ typedef struct s_data
 }	t_data;
 
 void	init(t_data *data, char *argv[]);
-void	purge(t_data *data);
+t_scene	*init_scene();
+void	purge(t_data *data, t_scene *scene);
 void	loop(t_data *data);
 t_scene	*reader(char *path);
 bool	check_rgb(char **rgb);

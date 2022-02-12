@@ -6,7 +6,7 @@
 /*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 11:44:34 by lhorefto          #+#    #+#             */
-/*   Updated: 2022/02/12 12:54:32 by lhorefto         ###   ########.fr       */
+/*   Updated: 2022/02/12 16:14:06 by lhorefto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,32 @@
 
 bool	get_camera(char **line, t_camera *camera)
 {
-	int		fov;
+	int		f;
 	char	**xyz;
 	char	**ov;
 
 	if (ft_2darr_len(line) != 4)
 		return (berror("Error\nwrong camera data!"));
-	fov = ft_atoi(line[3]);
-	if (fov < 0 || fov > 180)
+	f = ft_atoi(line[3]);
+	if (f < 0 || f > 180)
 		return (berror("Error\nwrong camera field of view!"));
-	camera->fov = fov;
+	camera->fov = f;
 	xyz = ft_split(line[1], ',');
 	if (ft_2darr_len(xyz) != 3)
 		return (berror("Error\n wrong light coordinates!"));
 	camera->x = atof(xyz[0]);
 	camera->y = atof(xyz[1]);
 	camera->z = atof(xyz[2]);
+	free_2darr(xyz, 3);
 	ov = ft_split(line[2], ',');
 	if (!check_ovector(ov))
 		return (berror("Error\n wrong camera orientation vector!"));
-	camera->vx = atof(ov[0]);
-	camera->vy = atof(ov[1]);
+	camera->vy = atof(ov[0]);
+	camera->vx = atof(ov[1]);
 	camera->vz = atof(ov[2]);
-	free_2darr(xyz, 3);
 	free_2darr(ov, 3);
 	free_2darr(line, 4);
-	return true;
+	return (true);
 }
 
 bool	get_sphere(char **line, t_sph *sph)
@@ -123,7 +123,7 @@ bool	get_cylinder(char **line, t_cyl *cyl)
 	cyl->vx = atof(ov[0]);
 	cyl->vy = atof(ov[1]);
 	cyl->vz = atof(ov[2]);
-	rgb = ft_split(line[3], ',');
+	rgb = ft_split(line[5], ',');
 	if (!check_rgb(rgb))
 		return (berror("Error\nwrong cylinder rgb values!"));
 	cyl->r = ft_atoi(rgb[0]);

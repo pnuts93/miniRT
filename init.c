@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:37:00 by pnuti             #+#    #+#             */
-/*   Updated: 2022/02/11 17:38:50 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/02/12 16:12:44 by lhorefto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,20 @@ void	init(t_data *data, char *argv[])
 	data->screen.h = 0;
 	mlx_get_screen_size(data->mlx, &data->screen.w, &data->screen.h);
 	data->win = mlx_new_window(data->mlx, data->screen.w, data->screen.h, argv[1]);
+}
+
+t_scene	*init_scene()
+{
+	t_scene	*scene;
+	
+	scene = (t_scene *)malloc(sizeof(t_scene));
+	if (!scene)
+		return NULL;
+	scene->alight = (t_alight *)malloc(sizeof(t_alight));
+	scene->camera = (t_camera *)malloc(sizeof(t_camera));
+	scene->light = (t_light *)malloc(sizeof(t_light));
+	scene->sph = (t_sph *)malloc(sizeof(t_sph));
+	scene->pla = (t_pla *)malloc(sizeof(t_pla));
+	scene->cyl = (t_cyl *)malloc(sizeof(t_cyl));
+	return scene;
 }

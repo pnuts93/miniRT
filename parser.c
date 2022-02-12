@@ -6,7 +6,7 @@
 /*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 09:49:20 by lhorefto          #+#    #+#             */
-/*   Updated: 2022/02/12 12:52:51 by lhorefto         ###   ########.fr       */
+/*   Updated: 2022/02/12 16:16:18 by lhorefto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,11 @@ static bool	get_alight(char **line, t_alight *alight)
 	
 	if (ft_2darr_len(line) != 3)
 		return (berror("Error\n wrong ambient light data!"));
-	printf("??\n");
 	ra = atof(line[1]);
 	if (ra < 0.0 || ra > 1.0)
 		return (berror("Error\n wrong ambient light ratio!"));
-	printf("??\n");
 	alight->ratio = ra;
 	rgb = ft_split(line[2], ',');
-	printf("??\n");
 	if (!check_rgb(rgb))
 		return (berror("Error\n wrong ambient light rgb values!"));
 	alight->r = ft_atoi(rgb[0]);
@@ -70,6 +67,7 @@ static bool	get_light(char **line, t_light *light)
 	light->z = atof(xyz[2]);
 	free_2darr(xyz, 3);
 	free_2darr(line, 3);
+	return (true);
 }
 
 static bool handle_line(t_scene *scene, char **line)
@@ -94,23 +92,25 @@ t_scene	*reader(char *path)
 {
 	t_scene	*scene;
 	char	**lines;
+	char	**tmp;
 	int		i;
+	char	*r;
 
-	lines = ft_split(raw(path), '\n');
-	scene = (t_scene *)malloc(sizeof(t_scene));
+	r = raw(path);
+	lines = ft_split(r, '\n');
+	free(r);
+	scene = init_scene();
 	if (!scene)
 		return NULL;
 	i = 0;
 	while (lines[i])
 	{
-		char	**tmp;
-		printf("%s\n", lines[i]);
 		tmp = ft_split(lines[i], ' ');
 		if (!handle_line(scene, tmp))	
 		{
-			// do cleanup
 			return NULL;
 		}
+		free(lines[i]);
 		i++;
 	}
 	free(lines);
