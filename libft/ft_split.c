@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 13:28:05 by flormich          #+#    #+#             */
-/*   Updated: 2021/08/18 17:35:32 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/12 12:51:59 by lhorefto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

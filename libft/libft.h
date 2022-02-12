@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flormich <flormich@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 19:27:18 by flormich          #+#    #+#             */
-/*   Updated: 2021/12/28 17:04:03 by flormich         ###   ########.fr       */
+/*   Updated: 2022/02/12 12:45:41 by lhorefto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
