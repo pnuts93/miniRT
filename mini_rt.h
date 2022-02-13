@@ -6,7 +6,7 @@
 /*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/02/13 14:35:47 by lhorefto         ###   ########.fr       */
+/*   Updated: 2022/02/13 15:07:58 by lhorefto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,16 @@ typedef struct s_cyl
 	int		b;
 }	t_cyl;
 
+typedef struct s_ns
+{
+	int	nc;
+	int	na;
+	int	nl;
+	int	ny;
+	int	np;
+	int	ns;
+}	t_ns;
+
 typedef struct s_scene
 {
 	t_alight	*alight;
@@ -100,18 +110,8 @@ typedef struct s_scene
 	int			cc;
 	int			cp;
 	int			cs;
+	t_ns		ns;
 }	t_scene;
-
-typedef struct s_ns
-{
-	int	nc;
-	int	na;
-	int	nl;
-	int	ny;
-	int	np;
-	int	ns;
-}	t_ns;
-
 
 typedef struct s_screen
 {

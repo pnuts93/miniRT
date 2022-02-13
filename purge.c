@@ -6,7 +6,7 @@
 /*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:26:17 by pnuti             #+#    #+#             */
-/*   Updated: 2022/02/13 14:41:42 by lhorefto         ###   ########.fr       */
+/*   Updated: 2022/02/13 15:07:27 by lhorefto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,21 @@ void	purge_scene(t_scene *scene)
 	free(scene->alight);
 	free(scene->light);
 	free(scene->camera);
-	while (i < scene->cp)
+	while (i < scene->ns.np)
 	{
 		free(scene->pla[i]);
 		i++;
 	}
 	free(scene->pla);
 	i = 0;
-	while (i < scene->cs)
+	while (i < scene->ns.ns)
 	{
 		free(scene->sph[i]);
 		i++;
 	}
 	free(scene->sph);
 	i = 0;
-	while (i < scene->cc)
+	while (i < scene->ns.ny)
 	{
 		free(scene->cyl[i]);
 		i++;
