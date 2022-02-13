@@ -6,7 +6,7 @@
 /*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 11:44:34 by lhorefto          #+#    #+#             */
-/*   Updated: 2022/02/13 12:29:11 by lhorefto         ###   ########.fr       */
+/*   Updated: 2022/02/13 13:56:34 by lhorefto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,29 @@ bool	get_sphere(char **line, t_sph *sph)
 		return (berror("Error\nwrong sphere rgb values!"));
 	}
 	set_sphere_coordinates(xyz, rgb, sph);
+	return (true);
+}
+
+bool	get_light(char **line, t_light *light)
+{
+	double	ra;
+	char	**xyz;
+
+	if (ft_2darr_len(line) != 3)
+		return (berror("Error\n wrong light data!"));
+	ra = ft_atof(line[2]);
+	if (ra < 0.0 || ra > 1.0)
+		return (berror("Error\n wrong light ratio!"));
+	light->ratio = ra;
+	xyz = ft_split(line[1], ',');
+	if (ft_2darr_len(xyz) != 3)
+	{
+		free_2darr(xyz);
+		return (berror("Error\n wrong light coordinates!"));
+	}
+	light->x = ft_atof(xyz[0]);
+	light->y = ft_atof(xyz[1]);
+	light->z = ft_atof(xyz[2]);
+	free_2darr(xyz);
 	return (true);
 }

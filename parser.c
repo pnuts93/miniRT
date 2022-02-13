@@ -6,7 +6,7 @@
 /*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 09:49:20 by lhorefto          #+#    #+#             */
-/*   Updated: 2022/02/13 12:09:50 by lhorefto         ###   ########.fr       */
+/*   Updated: 2022/02/13 14:38:13 by lhorefto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,52 +26,36 @@ static char	*raw(char *path)
 	return (ft_strdup(buff));
 }
 
-static bool	get_alight(char **line, t_alight *alight)
+static t_ns	count_elements(char **lines)
 {
-	double	ra;
-	char	**rgb;
+	t_ns	ns;
+	int		i;
 
-	if (ft_2darr_len(line) != 3)
-		return (berror("Error\n wrong ambient light data!"));
-	ra = atof(line[1]);
-	if (ra < 0.0 || ra > 1.0)
-		return (berror("Error\n wrong ambient light ratio!"));
-	alight->ratio = ra;
-	rgb = ft_split(line[2], ',');
-	if (!check_rgb(rgb))
+	ns = init_counter();
+	i = 0;
+	while (lines[i])
 	{
-		free_2darr(rgb);
-		return (berror("Error\n wrong ambient light rgb values!"));
+		if (!ft_strncmp(lines[i], "A ", 2))
+			ns.na++;
+		else if (!ft_strncmp(lines[i], "L ", 2))
+			ns.nl++;
+		else if (!ft_strncmp(lines[i], "C ", 2))
+			ns.nc++;
+		else if (!ft_strncmp(lines[i], "sp ", 3))
+			ns.ns++;
+		else if (!ft_strncmp(lines[i], "pl ", 3))
+			ns.np++;
+		else if (!ft_strncmp(lines[i], "cy ", 3))
+			ns.ny++;
+		i++;
 	}
-	alight->r = ft_atoi(rgb[0]);
-	alight->g = ft_atoi(rgb[1]);
-	alight->b = ft_atoi(rgb[2]);
-	free_2darr(rgb);
-	return (true);
-}
-
-static bool	get_light(char **line, t_light *light)
-{
-	double	ra;
-	char	**xyz;
-
-	if (ft_2darr_len(line) != 3)
-		return (berror("Error\n wrong light data!"));
-	ra = ft_atof(line[2]);
-	if (ra < 0.0 || ra > 1.0)
-		return (berror("Error\n wrong light ratio!"));
-	light->ratio = ra;
-	xyz = ft_split(line[1], ',');
-	if (ft_2darr_len(xyz) != 3)
+	if (ns.na != 1 || ns.nl != 1 || ns.nc != 1)
 	{
-		free_2darr(xyz);
-		return (berror("Error\n wrong light coordinates!"));
+		free_2darr(lines);
+		perror("Error\nwrong number of cameras/(ambient)lights in the file!");
+		exit(0);
 	}
-	light->x = ft_atof(xyz[0]);
-	light->y = ft_atof(xyz[1]);
-	light->z = ft_atof(xyz[2]);
-	free_2darr(xyz);
-	return (true);
+	return (ns);
 }
 
 static bool	handle_line(t_scene *scene, char **line)
@@ -83,11 +67,11 @@ static bool	handle_line(t_scene *scene, char **line)
 	else if (!ft_strncmp(line[0], "C", 3))
 		return (get_camera(line, scene->camera));
 	else if (!ft_strncmp(line[0], "sp", 4))
-		return (get_sphere(line, scene->sph));
+		return (get_sphere(line, scene->sph[scene->cs++]));
 	else if (!ft_strncmp(line[0], "pl", 4))
-		return (get_plane(line, scene->pla));
+		return (get_plane(line, scene->pla[scene->cp++]));
 	else if (!ft_strncmp(line[0], "cy", 4))
-		return (get_cylinder(line, scene->cyl));
+		return (get_cylinder(line, scene->cyl[scene->cc++]));
 	else
 		return (berror("Error\nUnknown identifier in the scene!"));
 }
@@ -102,6 +86,7 @@ t_scene	*reader(char *path, t_scene *scene)
 	r = raw(path);
 	lines = ft_split(r, '\n');
 	free(r);
+	scene = init_scene(count_elements(lines));
 	i = 0;
 	while (lines[i])
 	{

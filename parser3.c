@@ -6,7 +6,7 @@
 /*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 11:39:13 by lhorefto          #+#    #+#             */
-/*   Updated: 2022/02/13 12:27:54 by lhorefto         ###   ########.fr       */
+/*   Updated: 2022/02/13 13:57:07 by lhorefto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,28 @@ bool	get_cylinder(char **line, t_cyl *cyl)
 	}
 	rgb = ft_split(line[5], ',');
 	return (set_cyl_coordinates(xyz, ov, rgb, cyl));
+}
+
+bool	get_alight(char **line, t_alight *alight)
+{
+	double	ra;
+	char	**rgb;
+
+	if (ft_2darr_len(line) != 3)
+		return (berror("Error\n wrong ambient light data!"));
+	ra = atof(line[1]);
+	if (ra < 0.0 || ra > 1.0)
+		return (berror("Error\n wrong ambient light ratio!"));
+	alight->ratio = ra;
+	rgb = ft_split(line[2], ',');
+	if (!check_rgb(rgb))
+	{
+		free_2darr(rgb);
+		return (berror("Error\n wrong ambient light rgb values!"));
+	}
+	alight->r = ft_atoi(rgb[0]);
+	alight->g = ft_atoi(rgb[1]);
+	alight->b = ft_atoi(rgb[2]);
+	free_2darr(rgb);
+	return (true);
 }

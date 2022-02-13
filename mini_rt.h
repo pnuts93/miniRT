@@ -6,7 +6,7 @@
 /*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/02/13 11:36:24 by lhorefto         ###   ########.fr       */
+/*   Updated: 2022/02/13 14:35:47 by lhorefto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,25 @@ typedef struct s_scene
 	t_alight	*alight;
 	t_light		*light;
 	t_camera	*camera;
-	t_sph		*sph;
-	t_pla		*pla;
-	t_cyl		*cyl;
+	t_sph		**sph;
+	t_pla		**pla;
+	t_cyl		**cyl;
 	bool		error;
+	int			cc;
+	int			cp;
+	int			cs;
 }	t_scene;
+
+typedef struct s_ns
+{
+	int	nc;
+	int	na;
+	int	nl;
+	int	ny;
+	int	np;
+	int	ns;
+}	t_ns;
+
 
 typedef struct s_screen
 {
@@ -113,7 +127,8 @@ typedef struct s_data
 }	t_data;
 
 void	init(t_data *data, char *argv[]);
-t_scene	*init_scene();
+t_scene	*init_scene(t_ns ns);
+t_ns	init_counter();
 void	purge(t_data *data);
 void	purge_scene(t_scene *scene);
 void	loop(t_data *data);
@@ -123,6 +138,8 @@ bool	check_ovector(char **ov);
 bool	berror(const char	*msg);
 void	free_2darr(char	**str);
 bool	get_camera(char **line, t_camera *camera);
+bool	get_light(char **line, t_light *light);
+bool	get_alight(char **line, t_alight *alight);
 bool	get_sphere(char **line, t_sph *sph);
 bool	get_plane(char **line, t_pla *pla);
 bool	get_cylinder(char **line, t_cyl *cyl);
