@@ -6,7 +6,7 @@
 /*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:26:17 by pnuti             #+#    #+#             */
-/*   Updated: 2022/02/12 18:04:36 by lhorefto         ###   ########.fr       */
+/*   Updated: 2022/02/13 10:28:33 by lhorefto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	purge(t_data *data)
 
 void	purge_scene(t_scene *scene)
 {
-	printf("asd\n");
 	free(scene->alight);
 	free(scene->light);
 	free(scene->camera);

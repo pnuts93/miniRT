@@ -6,7 +6,7 @@
 /*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:37:00 by pnuti             #+#    #+#             */
-/*   Updated: 2022/02/12 16:12:44 by lhorefto         ###   ########.fr       */
+/*   Updated: 2022/02/13 10:57:13 by lhorefto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_scene	*init_scene()
 	scene = (t_scene *)malloc(sizeof(t_scene));
 	if (!scene)
 		return NULL;
+	scene->error = false;
 	scene->alight = (t_alight *)malloc(sizeof(t_alight));
 	scene->camera = (t_camera *)malloc(sizeof(t_camera));
 	scene->light = (t_light *)malloc(sizeof(t_light));

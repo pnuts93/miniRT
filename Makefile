@@ -6,13 +6,13 @@
 #    By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/11 16:12:04 by pnuti             #+#    #+#              #
-#    Updated: 2022/02/12 11:32:13 by lhorefto         ###   ########.fr        #
+#    Updated: 2022/02/13 11:38:50 by lhorefto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= miniRT
 FLAGS	= -Wall -Wextra -Werror
-SRC		= main.c init.c loop_hooks.c purge.c parser.c utils.c parser2.c
+SRC		= main.c init.c loop_hooks.c purge.c parser.c utils.c parser2.c parser3.c
 OBJ		= $(SRC:.c=.o)
 LIBS	= -L libft/ -lft -L minilibx-linux/ -lmlx_Linux -lXext -lX11 -lm -lz
 

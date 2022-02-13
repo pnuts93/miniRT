@@ -6,7 +6,7 @@
 /*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 11:17:43 by lhorefto          #+#    #+#             */
-/*   Updated: 2022/02/12 15:50:06 by lhorefto         ###   ########.fr       */
+/*   Updated: 2022/02/13 10:26:39 by lhorefto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ bool	berror(const char	*msg)
 	return false;
 }
 
-void	free_2darr(char	**str, int l)
+void	free_2darr(char	**str)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] && i < l)
+	while (str[i])
 	{
 		free(str[i]);
 		i++;

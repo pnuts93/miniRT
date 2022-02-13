@@ -6,7 +6,7 @@
 /*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/02/12 17:18:39 by lhorefto         ###   ########.fr       */
+/*   Updated: 2022/02/13 11:36:24 by lhorefto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ typedef struct s_scene
 	t_camera	*camera;
 	t_sph		*sph;
 	t_pla		*pla;
-	t_cyl		*cyl;	
+	t_cyl		*cyl;
+	bool		error;
 }	t_scene;
 
 typedef struct s_screen
@@ -116,11 +117,11 @@ t_scene	*init_scene();
 void	purge(t_data *data);
 void	purge_scene(t_scene *scene);
 void	loop(t_data *data);
-t_scene	*reader(char *path);
+t_scene	*reader(char *path, t_scene *scene);
 bool	check_rgb(char **rgb);
 bool	check_ovector(char **ov);
 bool	berror(const char	*msg);
-void	free_2darr(char	**str, int l);
+void	free_2darr(char	**str);
 bool	get_camera(char **line, t_camera *camera);
 bool	get_sphere(char **line, t_sph *sph);
 bool	get_plane(char **line, t_pla *pla);
