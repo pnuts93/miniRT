@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   purge.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:26:17 by pnuti             #+#    #+#             */
-/*   Updated: 2022/02/11 17:38:47 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/02/13 15:07:27 by lhorefto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,35 @@ void	purge(t_data *data)
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
 	exit(0);
+}
+
+void	purge_scene(t_scene *scene)
+{
+	int	i;
+
+	i = 0;
+	free(scene->alight);
+	free(scene->light);
+	free(scene->camera);
+	while (i < scene->ns.np)
+	{
+		free(scene->pla[i]);
+		i++;
+	}
+	free(scene->pla);
+	i = 0;
+	while (i < scene->ns.ns)
+	{
+		free(scene->sph[i]);
+		i++;
+	}
+	free(scene->sph);
+	i = 0;
+	while (i < scene->ns.ny)
+	{
+		free(scene->cyl[i]);
+		i++;
+	}
+	free(scene->cyl);
+	free(scene);
 }

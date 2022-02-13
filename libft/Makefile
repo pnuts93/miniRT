@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+         #
+#    By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/18 22:32:44 by flormich          #+#    #+#              #
-#    Updated: 2021/11/17 15:27:58 by pnuti            ###   ########.fr        #
+#    Updated: 2022/02/12 17:50:17 by lhorefto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRC = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 		ft_lstlast.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c \
 		ft_itoa.c ft_itoa_unsigned_int.c ft_itoa_with_sign.c \
 		ft_itoa_without_sign.c ft_itohex.c ft_isspace.c ft_2darr_len.c \
-		ft_len_until_char.c
+		ft_len_until_char.c ft_atof.c
 
 OBJ = $(SRC:.c=.o)
 

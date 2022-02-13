@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/02/13 11:35:27 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/02/13 19:13:29 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
 
 //INPUT
 
@@ -33,47 +34,129 @@ typedef struct	s_vector
 	float	z2;
 }	t_vector;
 
-typedef struct	s_sphere
+typedef struct s_alight
 {
-	float			x;
-	float			y;
-	float			z;
-	float			d;
-//	unsigned int	rgb;
-}	t_sphere;
+	double	ratio;
+	int		r;
+	int		g;
+	int		b;
+}	t_alight;
 
-typedef struct	s_cam
+typedef struct s_cam
 {
-	float	x;
-	float	y;
-	float	z;
-	float	nov_x;
-	float	nov_y;
-	float	nov_z;
-	float	fov_w;
-	float	fov_h;
+	double	x;
+	double	y;
+	double	z;
+	double	vx;
+	double	vy;
+	double	vz;
+	double	fov_w;
+	double	fov_h;
 }	t_cam;
 
-typedef struct	s_screen
+typedef struct s_light
+{
+	double	x;
+	double	y;
+	double	z;
+	double	ratio;
+}	t_light;
+
+typedef struct s_sph
+{
+	double	x;
+	double	y;
+	double	z;
+	double	d;
+	int		r;
+	int		g;
+	int		b;
+}	t_sph;
+
+typedef struct s_pla
+{
+	double	x;
+	double	y;
+	double	z;
+	double	vx;
+	double	vy;
+	double	vz;
+	int		r;
+	int		g;
+	int		b;
+}	t_pla;
+
+typedef struct s_cyl
+{
+	double	x;
+	double	y;
+	double	z;
+	double	vx;
+	double	vy;
+	double	vz;
+	double	dia;
+	double	hei;
+	int		r;
+	int		g;
+	int		b;
+}	t_cyl;
+
+typedef struct s_ns
+{
+	int	nc;
+	int	na;
+	int	nl;
+	int	ny;
+	int	np;
+	int	ns;
+}	t_ns;
+
+typedef struct s_scene
+{
+	t_alight	*alight;
+	t_light		*light;
+	t_cam		*camera;
+	t_sph		**sph;
+	t_pla		**pla;
+	t_cyl		**cyl;
+	bool		error;
+	int			cc;
+	int			cp;
+	int			cs;
+	t_ns		ns;
+}	t_scene;
+
+typedef struct s_screen
 {
 	int	w;
 	int	h;
 }	t_screen;
 
-typedef struct	s_data
+typedef struct s_data
 {
-	//TO TEST
-	t_sphere	sphere;
-	t_cam		camera;
-	//TO TEST
+	t_scene		*scene;
 	void		*mlx;
 	void		*win;
 	t_screen	screen;
 }	t_data;
 
 void	init(t_data *data, char *argv[]);
+t_scene	*init_scene(t_ns ns);
+t_ns	init_counter();
 void	purge(t_data *data);
+void	purge_scene(t_scene *scene);
 void	loop(t_data *data);
+t_scene	*reader(char *path, t_scene *scene);
+bool	check_rgb(char **rgb);
+bool	check_ovector(char **ov);
+bool	berror(const char	*msg);
+void	free_2darr(char	**str);
+bool	get_camera(char **line, t_cam *camera);
+bool	get_light(char **line, t_light *light);
+bool	get_alight(char **line, t_alight *alight);
+bool	get_sphere(char **line, t_sph *sph);
+bool	get_plane(char **line, t_pla *pla);
+bool	get_cylinder(char **line, t_cyl *cyl);
 
 //INTERSECTION
 
