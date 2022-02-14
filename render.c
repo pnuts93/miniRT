@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 10:36:04 by pnuti             #+#    #+#             */
-/*   Updated: 2022/02/13 19:16:25 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/02/14 10:08:29 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	project(t_data *data, t_vector ray, int i, int j)
 
 	angle_w = (data->scene->camera[0].fov_w / 2) - ((data->scene->camera[0].fov_w / data->screen.w) * j);
 	angle_h = (data->scene->camera[0].fov_h / 2) - ((data->scene->camera[0].fov_h / data->screen.h) * i);
-	ray.x2 = data->scene->camera[0].x + data->scene->camera[0].vx + sinf(angle_w);
-	ray.y2 = data->scene->camera[0].y + data->scene->camera[0].vy + cosf(angle_w);
-	ray.z2 = data->scene->camera[0].z + data->scene->camera[0].vz + sinf(angle_h);
+	ray.x2 = data->scene->camera[0].x + data->scene->camera[0].vx + sinf(angle_w * 3.14 / 180);
+	ray.y2 = data->scene->camera[0].y + data->scene->camera[0].vy + cosf(angle_w * 3.14 / 180);
+	ray.z2 = data->scene->camera[0].z + data->scene->camera[0].vz + sinf(angle_h * 3.14 / 180);
 	if (inter_sphere(data, ray))
 		mlx_pixel_put(data->mlx, data->win, j, i, 0XFFFFFFFF);
 }

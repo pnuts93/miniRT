@@ -6,7 +6,7 @@
 #    By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/11 16:12:04 by pnuti             #+#    #+#              #
-#    Updated: 2022/02/13 20:28:43 by pnuti            ###   ########.fr        #
+#    Updated: 2022/02/14 09:49:17 by pnuti            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ LIBS	= -L libft/ -lft -L minilibx-linux/ -lmlx_Linux -lXext -lX11 -lm -lz
 
 all : $(NAME)
 
-$(NAME) : $(OBJ) ##complibs
+$(NAME) : $(OBJ) complibs
 	$(CC) $(FLAGS) $(OBJ) $(LIBS) -o $(NAME)
 
 complibs :

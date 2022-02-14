@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/02/13 19:13:29 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/02/14 10:07:28 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ t_ns	init_counter();
 void	purge(t_data *data);
 void	purge_scene(t_scene *scene);
 void	loop(t_data *data);
+void	render(t_data *data);
 t_scene	*reader(char *path, t_scene *scene);
 bool	check_rgb(char **rgb);
 bool	check_ovector(char **ov);
