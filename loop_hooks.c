@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:12:05 by pnuti             #+#    #+#             */
-/*   Updated: 2022/02/11 17:38:41 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/02/15 15:15:10 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static int	handle_key(int kn, t_data *data)
 
 static int	handle_loop(t_data *data)
 {
+	render(data);
 	return (0);
 }
 

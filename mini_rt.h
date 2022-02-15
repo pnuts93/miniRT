@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/02/14 10:07:28 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/02/15 14:37:15 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,17 @@
 
 //INPUT
 
+typedef struct s_point
+{
+	float	x;
+	float	y;
+	float	z;
+}	t_point;
+
 typedef struct	s_vector
 {
-	float	x1;
-	float	y1;
-	float	z1;
-	float	x2;
-	float	y2;
-	float	z2;
+	t_point	p1;
+	t_point	p2;
 }	t_vector;
 
 typedef struct s_alight
@@ -44,29 +47,21 @@ typedef struct s_alight
 
 typedef struct s_cam
 {
-	double	x;
-	double	y;
-	double	z;
-	double	vx;
-	double	vy;
-	double	vz;
-	double	fov_w;
-	double	fov_h;
+	t_point	c;
+	t_point	nov;
+	float	fov_w;
+	float	fov_h;
 }	t_cam;
 
 typedef struct s_light
 {
-	double	x;
-	double	y;
-	double	z;
+	t_point	c;
 	double	ratio;
 }	t_light;
 
 typedef struct s_sph
 {
-	double	x;
-	double	y;
-	double	z;
+	t_point	c;
 	double	d;
 	int		r;
 	int		g;
@@ -75,12 +70,8 @@ typedef struct s_sph
 
 typedef struct s_pla
 {
-	double	x;
-	double	y;
-	double	z;
-	double	vx;
-	double	vy;
-	double	vz;
+	t_point	c;
+	t_point	nov;
 	int		r;
 	int		g;
 	int		b;
@@ -88,12 +79,8 @@ typedef struct s_pla
 
 typedef struct s_cyl
 {
-	double	x;
-	double	y;
-	double	z;
-	double	vx;
-	double	vy;
-	double	vz;
+	t_point	c;
+	t_point	nov;
 	double	dia;
 	double	hei;
 	int		r;
@@ -162,5 +149,12 @@ bool	get_cylinder(char **line, t_cyl *cyl);
 //INTERSECTION
 
 int		inter_sphere(t_data *data, t_vector ray);
+
+//VECTORS
+
+void	set_p(t_point *p, float x, float y, float z);
+void	import_p(t_point *p_src, t_point *p_dst);
+t_point	*diff_p(t_point a, t_point b);
+float	dot(t_point v1, t_point v2);
 
 #endif

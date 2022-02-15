@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 11:44:34 by lhorefto          #+#    #+#             */
-/*   Updated: 2022/02/13 19:11:54 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/02/15 15:00:14 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,9 @@
 
 static void	set_camera_coordinates(char **xyz, char **ov, t_cam *camera)
 {
-	camera->x = ft_atof(xyz[0]);
-	camera->y = ft_atof(xyz[1]);
-	camera->z = ft_atof(xyz[2]);
+	set_p(&camera->c, ft_atof(xyz[0]), ft_atof(xyz[1]), ft_atof(xyz[2]));
 	free_2darr(xyz);
-	camera->vy = ft_atof(ov[0]);
-	camera->vx = ft_atof(ov[1]);
-	camera->vz = ft_atof(ov[2]);
+	set_p(&camera->nov, ft_atof(ov[0]), ft_atof(ov[1]), ft_atof(ov[2]));
 	free_2darr(ov);
 }
 
@@ -54,9 +50,7 @@ bool	get_camera(char **line, t_cam *camera)
 
 static void	set_sphere_coordinates(char **xyz, char **rgb, t_sph *sph)
 {
-	sph->x = ft_atof(xyz[0]);
-	sph->y = ft_atof(xyz[1]);
-	sph->z = ft_atof(xyz[2]);
+	set_p(&sph->c,ft_atof(xyz[0]), ft_atof(xyz[1]), ft_atof(xyz[2]));
 	free_2darr(xyz);
 	sph->r = ft_atoi(rgb[0]);
 	sph->g = ft_atoi(rgb[1]);
@@ -106,9 +100,7 @@ bool	get_light(char **line, t_light *light)
 		free_2darr(xyz);
 		return (berror("Error\n wrong light coordinates!"));
 	}
-	light->x = ft_atof(xyz[0]);
-	light->y = ft_atof(xyz[1]);
-	light->z = ft_atof(xyz[2]);
+	set_p(&light->c, ft_atof(xyz[0]), ft_atof(xyz[1]), ft_atof(xyz[2]));
 	free_2darr(xyz);
 	return (true);
 }

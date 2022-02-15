@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 11:39:13 by lhorefto          #+#    #+#             */
-/*   Updated: 2022/02/13 13:57:07 by lhorefto         ###   ########.fr       */
+/*   Updated: 2022/02/15 09:45:16 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,9 @@
 
 static bool	set_plane_coordinates(char **xyz, char **ov, char **rgb, t_pla *pla)
 {
-	pla->x = ft_atof(xyz[0]);
-	pla->y = ft_atof(xyz[1]);
-	pla->z = ft_atof(xyz[2]);
+	set_p(&pla->c, ft_atof(xyz[0]), ft_atof(xyz[1]), ft_atof(xyz[2]));
 	free_2darr(xyz);
-	pla->vx = ft_atof(ov[0]);
-	pla->vy = ft_atof(ov[1]);
-	pla->vz = ft_atof(ov[2]);
+	set_p(&pla->nov, ft_atof(ov[0]), ft_atof(ov[1]), ft_atof(ov[2]));
 	free_2darr(ov);
 	if (!check_rgb(rgb))
 	{
@@ -61,13 +57,9 @@ bool	get_plane(char **line, t_pla *pla)
 
 static bool	set_cyl_coordinates(char **xyz, char **ov, char **rgb, t_cyl *cyl)
 {
-	cyl->x = ft_atof(xyz[0]);
-	cyl->y = ft_atof(xyz[1]);
-	cyl->z = ft_atof(xyz[2]);
+	set_p(&cyl->c, ft_atof(xyz[0]), ft_atof(xyz[1]), ft_atof(xyz[2]));
 	free_2darr(xyz);
-	cyl->vx = ft_atof(ov[0]);
-	cyl->vy = ft_atof(ov[1]);
-	cyl->vz = ft_atof(ov[2]);
+	set_p(&cyl->nov, ft_atof(ov[0]), ft_atof(ov[1]), ft_atof(ov[2]));
 	free_2darr(ov);
 	if (!check_rgb(rgb))
 	{
