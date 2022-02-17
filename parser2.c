@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 11:44:34 by lhorefto          #+#    #+#             */
-/*   Updated: 2022/02/15 15:00:14 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/02/17 13:44:53 by lhorefto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,7 @@ static void	set_sphere_coordinates(char **xyz, char **rgb, t_sph *sph)
 {
 	set_p(&sph->c,ft_atof(xyz[0]), ft_atof(xyz[1]), ft_atof(xyz[2]));
 	free_2darr(xyz);
-	sph->r = ft_atoi(rgb[0]);
-	sph->g = ft_atoi(rgb[1]);
-	sph->b = ft_atoi(rgb[2]);
+	sph->rgb = get_rgb(ft_atoi(rgb[0]), ft_atoi(rgb[1]), ft_atoi(rgb[2]));
 	free_2darr(rgb);
 }
 

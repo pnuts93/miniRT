@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 11:39:13 by lhorefto          #+#    #+#             */
-/*   Updated: 2022/02/15 09:45:16 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/02/17 13:46:35 by lhorefto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ static bool	set_plane_coordinates(char **xyz, char **ov, char **rgb, t_pla *pla)
 		free_2darr(rgb);
 		return (berror("Error\nwrong plane rgb values!"));
 	}
-	pla->r = ft_atoi(rgb[0]);
-	pla->g = ft_atoi(rgb[1]);
-	pla->b = ft_atoi(rgb[2]);
+	pla->rgb = get_rgb(ft_atoi(rgb[0]), ft_atoi(rgb[1]), ft_atoi(rgb[2]));
 	free_2darr(rgb);
 	return (true);
 }
@@ -66,9 +64,7 @@ static bool	set_cyl_coordinates(char **xyz, char **ov, char **rgb, t_cyl *cyl)
 		free_2darr(rgb);
 		return (berror("Error\nwrong cylinder rgb values!"));
 	}
-	cyl->r = ft_atoi(rgb[0]);
-	cyl->g = ft_atoi(rgb[1]);
-	cyl->b = ft_atoi(rgb[2]);
+	cyl->rgb = get_rgb(ft_atoi(rgb[0]), ft_atoi(rgb[1]), ft_atoi(rgb[2]));
 	free_2darr(rgb);
 	return (true);
 }
@@ -117,9 +113,7 @@ bool	get_alight(char **line, t_alight *alight)
 		free_2darr(rgb);
 		return (berror("Error\n wrong ambient light rgb values!"));
 	}
-	alight->r = ft_atoi(rgb[0]);
-	alight->g = ft_atoi(rgb[1]);
-	alight->b = ft_atoi(rgb[2]);
+	alight->rgb = get_rgb(ft_atoi(rgb[0]), ft_atoi(rgb[1]), ft_atoi(rgb[2]));
 	free_2darr(rgb);
 	return (true);
 }

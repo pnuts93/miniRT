@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 10:36:04 by pnuti             #+#    #+#             */
-/*   Updated: 2022/02/15 16:23:17 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/02/17 13:49:37 by lhorefto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	project(t_data *data, t_vector ray, int i, int j)
 		ray.p1.z + data->scene->camera->nov.z + sinf(angle_h * 3.14 / 180));
 	//printf("ij: [%d,%d]\tx: %f\ty: %f\tz: %f\n", i, j, ray.p2.x, ray.p2.y, ray.p2.z);
 	if (inter_sphere(data, ray))
-		mlx_pixel_put(data->mlx, data->win, j, i, 0XFFFFFFFF);
+		mlx_pixel_put(data->mlx, data->win, j, i, data->scene->sph[0]->rgb);
 }
 
 void	render(t_data *data)

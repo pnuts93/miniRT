@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/02/15 14:37:15 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/02/17 13:47:22 by lhorefto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,7 @@ typedef struct	s_vector
 typedef struct s_alight
 {
 	double	ratio;
-	int		r;
-	int		g;
-	int		b;
+	int		rgb;
 }	t_alight;
 
 typedef struct s_cam
@@ -63,18 +61,14 @@ typedef struct s_sph
 {
 	t_point	c;
 	double	d;
-	int		r;
-	int		g;
-	int		b;
+	int		rgb;
 }	t_sph;
 
 typedef struct s_pla
 {
 	t_point	c;
 	t_point	nov;
-	int		r;
-	int		g;
-	int		b;
+	int		rgb;
 }	t_pla;
 
 typedef struct s_cyl
@@ -83,9 +77,7 @@ typedef struct s_cyl
 	t_point	nov;
 	double	dia;
 	double	hei;
-	int		r;
-	int		g;
-	int		b;
+	int		rgb;
 }	t_cyl;
 
 typedef struct s_ns
@@ -139,6 +131,7 @@ bool	check_rgb(char **rgb);
 bool	check_ovector(char **ov);
 bool	berror(const char	*msg);
 void	free_2darr(char	**str);
+int		get_rgb(int r, int g, int b);
 bool	get_camera(char **line, t_cam *camera);
 bool	get_light(char **line, t_light *light);
 bool	get_alight(char **line, t_alight *alight);

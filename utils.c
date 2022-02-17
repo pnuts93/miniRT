@@ -6,7 +6,7 @@
 /*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 11:17:43 by lhorefto          #+#    #+#             */
-/*   Updated: 2022/02/13 10:26:39 by lhorefto         ###   ########.fr       */
+/*   Updated: 2022/02/17 13:43:55 by lhorefto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,9 @@ void	free_2darr(char	**str)
 		i++;
 	}
 	free(str);
+}
+
+int	get_rgb(int r, int g, int b)
+{
+	return (r * (2 << 15) + g * (2 << 7) + b);
 }
