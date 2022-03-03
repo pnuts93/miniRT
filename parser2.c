@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 11:44:34 by lhorefto          #+#    #+#             */
-/*   Updated: 2022/02/15 15:00:14 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/02/24 11:39:09 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	set_camera_coordinates(char **xyz, char **ov, t_cam *camera)
 {
 	set_p(&camera->c, ft_atof(xyz[0]), ft_atof(xyz[1]), ft_atof(xyz[2]));
 	free_2darr(xyz);
-	set_p(&camera->nov, ft_atof(ov[0]), ft_atof(ov[1]), ft_atof(ov[2]));
+	set_p(&camera->nov_i, ft_atof(ov[0]), ft_atof(ov[1]), ft_atof(ov[2]));
 	free_2darr(ov);
 }
 
@@ -66,6 +66,7 @@ bool	get_sphere(char **line, t_sph *sph)
 	if (ft_2darr_len(line) != 4)
 		return (berror("Error\nwrong sphere data!"));
 	sph->d = ft_atof(line[2]);
+	printf("d: %f\n", sph->d);
 	xyz = ft_split(line[1], ',');
 	if (ft_2darr_len(xyz) != 3)
 	{
