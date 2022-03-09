@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/02/28 21:55:07 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/03/09 14:57:41 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ typedef struct s_cyl
 {
 	t_point	c;
 	t_point	nov;
-	double	dia;
-	double	hei;
+	float	dia;
+	float	hei;
 	int		r;
 	int		g;
 	int		b;
@@ -151,10 +151,16 @@ bool	get_plane(char **line, t_pla *pla);
 bool	get_cylinder(char **line, t_cyl *cyl);
 float	absf(float n);
 float	modulef(float n, float module);
+float	*quadratic(float a, float b, float c);
+int		isequal(float a, float b);
+void	translate_scene(t_scene *scene);
+void	rotate_scene(t_scene *scene);
 
 //INTERSECTION
 
 int		inter_sphere(t_data *data, t_vector ray);
+int		inter_cylinder(t_data *data, t_vector ray);
+int		inter_plane(t_data *data, t_vector ray);
 
 //VECTORS
 

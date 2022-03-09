@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 11:44:34 by lhorefto          #+#    #+#             */
-/*   Updated: 2022/02/24 11:39:09 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/03/04 17:00:24 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ bool	get_sphere(char **line, t_sph *sph)
 	if (ft_2darr_len(line) != 4)
 		return (berror("Error\nwrong sphere data!"));
 	sph->d = ft_atof(line[2]);
-	printf("d: %f\n", sph->d);
 	xyz = ft_split(line[1], ',');
 	if (ft_2darr_len(xyz) != 3)
 	{
