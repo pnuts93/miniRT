@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 11:29:17 by pnuti             #+#    #+#             */
-/*   Updated: 2022/03/09 08:06:56 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/03/11 16:40:00 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,5 @@ float	*quadratic(float a, float b, float c)
 
 int	isequal(float a, float b)
 {
-	return ((a - __FLT_EPSILON__ <= b) && a + __FLT_EPSILON__ >= b);
+	return ((a - 0.00001 <= b) && (a + 0.00001 >= b));
 }

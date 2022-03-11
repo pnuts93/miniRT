@@ -6,7 +6,7 @@
 #    By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/11 16:12:04 by pnuti             #+#    #+#              #
-#    Updated: 2022/03/09 14:57:54 by pnuti            ###   ########.fr        #
+#    Updated: 2022/03/10 18:06:32 by pnuti            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ FLAGS	= -Wall -Wextra -Werror
 SRC		=	main.c init.c loop_hooks.c purge.c render.c inter.c utils.c		\
 			parser.c parser2.c parser3.c vectors.c vectors2.c rotation.c	\
 			rotation2.c	trigonometry.c generic_math.c rot_quater.c			\
-			scene_translate.c scene_rotate.c
+			scene_translate.c scene_rotate.c cyl_utils.c
 			
 OBJ		= $(SRC:.c=.o)
 LIBS	= -L libft/ -lft -L minilibx-linux/ -lmlx_Linux -lXext -lX11 -lm -lz

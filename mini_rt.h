@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/03/09 14:57:41 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/03/10 18:04:41 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,10 @@ typedef struct s_cyl
 {
 	t_point	c;
 	t_point	nov;
+	t_point	u;
 	float	dia;
 	float	hei;
+	float	phi;
 	int		r;
 	int		g;
 	int		b;
@@ -155,6 +157,8 @@ float	*quadratic(float a, float b, float c);
 int		isequal(float a, float b);
 void	translate_scene(t_scene *scene);
 void	rotate_scene(t_scene *scene);
+void	ref_cyl(t_cyl **cyl, int n);
+void	rotate_cyl(t_cyl *cyl, t_vector *ray);
 
 //INTERSECTION
 

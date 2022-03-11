@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 10:36:04 by pnuti             #+#    #+#             */
-/*   Updated: 2022/03/09 15:44:51 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/03/10 18:08:56 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	project(t_data *data, t_vector ray, int i, int j)
 	//printf("nov\tx: %f\ty: %f\tz: %f\n", ray.p2.x, ray.p2.y, ray.p2.z);
 	if (inter_sphere(data, ray))
 		mlx_pixel_put(data->mlx, data->win, j, i, 0XFFFFFFFF);
-	/*if (inter_cylinder(data, ray))
+	if (inter_cylinder(data, ray))
 		mlx_pixel_put(data->mlx, data->win, j, i, 0XFFFFFFFF);
-	if (inter_plane(data, ray))
-		mlx_pixel_put(data->mlx, data->win, j, i, 0XFFFFFFFF);*/
+	//if (inter_plane(data, ray))
+	//	mlx_pixel_put(data->mlx, data->win, j, i, 0XFFFFFFFF);
 }
 
 void	render(t_data *data)

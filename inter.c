@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 10:41:57 by pnuti             #+#    #+#             */
-/*   Updated: 2022/03/08 15:22:29 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/03/10 15:49:59 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	inter_cylinder(t_data *data, t_vector ray)
 	float	c;
 	float	*quad;
 
+	if (data->scene->cyl[0]->phi != 0)
+		rotate_cyl(data->scene->cyl[0], &ray);
 	a = powf(ray.p2.x, 2) + powf(ray.p2.y, 2);
 	b = 2 * ((ray.p1.x - data->scene->cyl[0]->c.x) * ray.p2.x + (ray.p1.y - data->scene->cyl[0]->c.y) * ray.p2.y);
 	c = powf(ray.p1.x - data->scene->cyl[0]->c.x, 2) + powf(ray.p1.y - data->scene->cyl[0]->c.y, 2) - powf(data->scene->cyl[0]->dia / 2, 2);

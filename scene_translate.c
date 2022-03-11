@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 16:23:23 by pnuti             #+#    #+#             */
-/*   Updated: 2022/03/08 17:21:48 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/03/10 18:08:02 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ void	translate_scene(t_scene *scene)
 	translate_cylinders(scene->cyl, scene->ns.ny, scene->camera->c);
 	translate_planes(scene->pla, scene->ns.np, scene->camera->c);
 	if (scene->ns.nl)
-		translate_point(scene->light, scene->camera->c);
+		translate_point(&scene->light->c, scene->camera->c);
 	set_p(&scene->camera->c, 0, 0, 0);
 }
