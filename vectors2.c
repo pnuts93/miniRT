@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 18:59:26 by pnuti             #+#    #+#             */
-/*   Updated: 2022/02/17 21:36:06 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/03/12 09:56:11 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,16 @@ t_point	*diff_vectors(t_point a, t_point b)
 	res->y = a.y - b.y;
 	res->z = a.z - b.z;
 	return (res);
+}
+
+void	normalise(t_point *v)
+{
+	float	magnitude;
+
+	magnitude = sqrtf(dot(*v, *v));
+	if (!magnitude)
+		return ;
+	v->x /= magnitude;
+	v->y /= magnitude;
+	v->z /= magnitude;
 }

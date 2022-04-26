@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 11:44:34 by lhorefto          #+#    #+#             */
-/*   Updated: 2022/03/04 17:00:24 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/03/17 11:06:05 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 static void	set_camera_coordinates(char **xyz, char **ov, t_cam *camera)
 {
+	t_point	*tmp;
+
 	set_p(&camera->c, ft_atof(xyz[0]), ft_atof(xyz[1]), ft_atof(xyz[2]));
 	free_2darr(xyz);
 	set_p(&camera->nov_i, ft_atof(ov[0]), ft_atof(ov[1]), ft_atof(ov[2]));
 	free_2darr(ov);
+	normalise(&camera->nov_i);
 }
 
 bool	get_camera(char **line, t_cam *camera)
@@ -52,9 +55,9 @@ static void	set_sphere_coordinates(char **xyz, char **rgb, t_sph *sph)
 {
 	set_p(&sph->c,ft_atof(xyz[0]), ft_atof(xyz[1]), ft_atof(xyz[2]));
 	free_2darr(xyz);
-	sph->r = ft_atoi(rgb[0]);
-	sph->g = ft_atoi(rgb[1]);
-	sph->b = ft_atoi(rgb[2]);
+	sph->color.r = ft_atoi(rgb[0]);
+	sph->color.g = ft_atoi(rgb[1]);
+	sph->color.b = ft_atoi(rgb[2]);
 	free_2darr(rgb);
 }
 

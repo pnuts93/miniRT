@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:26:17 by pnuti             #+#    #+#             */
-/*   Updated: 2022/02/14 10:04:42 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/04/26 09:39:47 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	purge(t_data *data)
 {
+	mlx_destroy_image(data->mlx, data->img.img);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	purge_scene(data->scene);

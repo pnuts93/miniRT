@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:37:00 by pnuti             #+#    #+#             */
-/*   Updated: 2022/02/13 18:55:59 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/04/26 09:27:56 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	init(t_data *data, char *argv[])
 	data->screen.h = 0;
 	mlx_get_screen_size(data->mlx, &data->screen.w, &data->screen.h);
 	data->win = mlx_new_window(data->mlx, data->screen.w, data->screen.h, argv[1]);
+	data->img.img = mlx_new_image(data->mlx, data->screen.w, data->screen.h);
+	data->img.address = mlx_get_data_addr(data->img.img, &data->img.bppx, &data->img.len, &data->img.endian);
 }
 
 static t_sph	**init_sph(int n)

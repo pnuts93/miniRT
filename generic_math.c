@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 11:29:17 by pnuti             #+#    #+#             */
-/*   Updated: 2022/03/11 16:40:00 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/04/22 17:15:07 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ float	modulef(float n, float module)
 	i = 0;
 	while (n > module * i)
 		i++;
+	i--;
 	return (n - (module * (float)i));
 }
 
@@ -45,4 +46,14 @@ float	*quadratic(float a, float b, float c)
 int	isequal(float a, float b)
 {
 	return ((a - 0.00001 <= b) && (a + 0.00001 >= b));
+}
+
+float	fmin_pos(float n1, float n2)
+{
+	if (n1 < n2 && n1 >= 0)
+		return (n1);
+	else if (n2 < n1 && n2 >= 0)
+		return (n2);
+	else
+		return (-1);
 }

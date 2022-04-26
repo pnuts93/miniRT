@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lhorefto <lhorefto@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 11:17:43 by lhorefto          #+#    #+#             */
-/*   Updated: 2022/02/13 10:26:39 by lhorefto         ###   ########.fr       */
+/*   Updated: 2022/04/26 09:41:40 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,12 @@ void	free_2darr(char	**str)
 		i++;
 	}
 	free(str);
+}
+
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
+{
+	char *dst;
+
+	dst = data->address + (y * data->len + x * (data->bppx / 8));
+	*(unsigned int *)dst = color;
 }

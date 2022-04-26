@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/03/10 18:04:41 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/04/26 09:25:42 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,33 @@
 
 //INPUT
 
+typedef unsigned int t_uint;
+
+enum shape_type
+{
+	SP,
+	PL,
+	CY,
+	NA
+};
+
+typedef struct	s_img
+{
+	void	*img;
+	char	*address;
+	int		bppx;
+	int		len;
+	int		endian;
+}				t_img;
+
+typedef struct s_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_rgb;
+
+
 typedef struct s_point
 {
 	float	x;
@@ -42,9 +69,7 @@ typedef struct	s_vector
 typedef struct s_alight
 {
 	double	ratio;
-	int		r;
-	int		g;
-	int		b;
+	t_rgb	color;
 }	t_alight;
 
 typedef struct s_cam
@@ -67,18 +92,14 @@ typedef struct s_sph
 {
 	t_point	c;
 	float	d;
-	int		r;
-	int		g;
-	int		b;
+	t_rgb	color;
 }	t_sph;
 
 typedef struct s_pla
 {
 	t_point	c;
 	t_point	nov;
-	int		r;
-	int		g;
-	int		b;
+	t_rgb	color;
 }	t_pla;
 
 typedef struct s_cyl
@@ -89,9 +110,7 @@ typedef struct s_cyl
 	float	dia;
 	float	hei;
 	float	phi;
-	int		r;
-	int		g;
-	int		b;
+	t_rgb	color;
 }	t_cyl;
 
 typedef struct s_ns
@@ -127,10 +146,12 @@ typedef struct s_screen
 
 typedef struct s_data
 {
+	t_img		img;
 	t_scene		*scene;
 	void		*mlx;
 	void		*win;
 	t_screen	screen;
+	int			shape_sel[2];
 }	t_data;
 
 void	init(t_data *data, char *argv[]);
@@ -159,15 +180,23 @@ void	translate_scene(t_scene *scene);
 void	rotate_scene(t_scene *scene);
 void	ref_cyl(t_cyl **cyl, int n);
 void	rotate_cyl(t_cyl *cyl, t_vector *ray);
+t_uint	get_rgb(float coeff, t_data *data);
+float	fmin_pos(float n1, float n2);
+float	get_shape(t_data *data, t_vector ray);
+t_point	*norm_sphere(t_data *data, t_vector ray, float t, t_point collision);
+t_point	*norm_plane(t_data *data, t_vector ray, float t, t_point collision);
+t_point	*norm_cylinder(t_data *data, t_vector ray, float t, t_point collision);
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 
 //INTERSECTION
 
-int		inter_sphere(t_data *data, t_vector ray);
-int		inter_cylinder(t_data *data, t_vector ray);
-int		inter_plane(t_data *data, t_vector ray);
+float	inter_sphere(t_sph *sph, t_vector ray);
+float	inter_cylinder(t_cyl *cyl, t_vector ray);
+float	inter_plane(t_pla *pla, t_vector ray);
 
 //VECTORS
 
+void	normalise(t_point *v);
 void	set_p(t_point *p, float x, float y, float z);
 void	import_p(t_point *p_src, t_point *p_dst);
 t_point *sum_vectors(t_point a, t_point b);
