@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 10:36:04 by pnuti             #+#    #+#             */
-/*   Updated: 2022/04/26 11:47:54 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/02 16:31:48 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ t_uint	get_pixel(t_data *data, t_vector ray, float t, t_point *(*f)(t_data*, t_v
 	t_point	*collision;
 	t_point	*norm;
 	t_point	*tmp;
-	t_point	*ref;
+	//t_point	*ref;
 	t_point	*inc;
-	float	dev;
+	float	coeff;
 
 	tmp = mult_vect_scal(ray.p2, t);
 	collision = sum_vectors(ray.p1, *tmp);
@@ -27,14 +27,16 @@ t_uint	get_pixel(t_data *data, t_vector ray, float t, t_point *(*f)(t_data*, t_v
 	norm = f(data, ray, t, *collision); 
 	inc = diff_vectors(ray.p1, *collision);
 	normalise(inc);
-	tmp = mult_vect_scal(*norm, 2 * dot(*norm, *inc));
+	/*tmp = mult_vect_scal(*norm, 2 * dot(*norm, *inc));
 	ref = diff_vectors(*tmp, *inc);
-	free(tmp);
+	free(tmp);*/
 	tmp = diff_vectors(data->scene->light->c, *collision);
-	dev = dot(*tmp, *ref);
-	float	coeff = powf(dev * (dev > 0), 1);
+	coeff = dot(*tmp, *norm);
+	coeff *= coeff > 0;
+	coeff *= 1 / sqrtf(dot(*tmp, *tmp));
+	coeff *= get_shadow(data, collision, norm, coeff);
 	free(tmp);
-	free(ref);
+	//free(ref);
 	free(collision);
 	free(inc);
 	free(norm);
@@ -56,9 +58,9 @@ void	project(t_data *data, t_vector ray, int i, int j)
 	ray.p2.x = sinf(modulef((PI / 2) + deg_to_rad(angle_h), PI)) * cosf(data->scene->camera->theta + deg_to_rad(angle_w));
 	ray.p2.y = sinf((PI / 2) + deg_to_rad(angle_h)) * sinf(modulef(data->scene->camera->theta + deg_to_rad(angle_w), 2 * PI));
 	ray.p2.z = cosf((PI / 2) + deg_to_rad(angle_h));
-	t = get_shape(data, ray);
+	t = get_shape(data, ray, 0);
 	if (t > 0)
-		my_mlx_pixel_put(&data->img, j, i, get_pixel(data, ray, t, f[data->shape_sel[0]]));
+		my_mlx_pixel_put(&data->img, j, data->screen.h - i, get_pixel(data, ray, t, f[data->shape_sel[0]]));
 }
 
 void	render(t_data *data)
@@ -80,4 +82,5 @@ void	render(t_data *data)
 		i++;
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
+	data->done = true;
 }

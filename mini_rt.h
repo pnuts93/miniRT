@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/04/26 09:25:42 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/04/28 16:01:35 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,7 @@ typedef struct s_data
 	void		*win;
 	t_screen	screen;
 	int			shape_sel[2];
+	bool		done;
 }	t_data;
 
 void	init(t_data *data, char *argv[]);
@@ -182,11 +183,12 @@ void	ref_cyl(t_cyl **cyl, int n);
 void	rotate_cyl(t_cyl *cyl, t_vector *ray);
 t_uint	get_rgb(float coeff, t_data *data);
 float	fmin_pos(float n1, float n2);
-float	get_shape(t_data *data, t_vector ray);
+float	get_shape(t_data *data, t_vector ray, int rec);
 t_point	*norm_sphere(t_data *data, t_vector ray, float t, t_point collision);
 t_point	*norm_plane(t_data *data, t_vector ray, float t, t_point collision);
 t_point	*norm_cylinder(t_data *data, t_vector ray, float t, t_point collision);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+float	get_shadow(t_data *data, t_point *p1, t_point *p2, float tlight);
 
 //INTERSECTION
 

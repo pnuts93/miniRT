@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:22:15 by pnuti             #+#    #+#             */
-/*   Updated: 2022/03/09 15:44:13 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/02 10:15:34 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	rotate_scene(t_scene *scene)
 	t_point	z;
 
 	set_p(&z, 0, 0, 1);
-	if (!dot(z, scene->camera->nov_i))
+	if (!scene->camera->nov_i.z)
 		return ;
 	if (!scene->camera->nov_i.x && !scene->camera->nov_i.y)
 	{
