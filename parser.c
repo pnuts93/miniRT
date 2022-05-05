@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 09:49:20 by lhorefto          #+#    #+#             */
-/*   Updated: 2022/02/15 15:02:59 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/05 14:13:53 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static bool	handle_line(t_scene *scene, char **line)
 	else if (!ft_strncmp(line[0], "pl", 4))
 		return (get_plane(line, scene->pla[scene->cp++]));
 	else if (!ft_strncmp(line[0], "cy", 4))
-		return (get_cylinder(line, scene->cyl[scene->cc++]));
+		return (get_cylinder(line, scene->cc, scene->cyl[scene->cc++]));
 	else
 		return (berror("Error\nUnknown identifier in the scene!"));
 }

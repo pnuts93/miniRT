@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:28:16 by pnuti             #+#    #+#             */
-/*   Updated: 2022/04/28 16:00:36 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/04 17:29:07 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@ int	main(int argc, char *argv[])
 	init(&data, argv);
 	data.scene->camera->fov_h = data.scene->camera->fov_w * ((float)data.screen.h / (float)data.screen.w);
 	rotate_scene(data.scene);
-//	printf("cyl ov\tx: %f\ty: %f\tz: %f\n", data.scene->cyl[0]->nov.x, data.scene->cyl[0]->nov.y, data.scene->cyl[0]->nov.z);
-//	printf("phi: %f\n", data.scene->cyl[0]->phi);
-//	printf("sph\tx: %f\ty: %f\tz: %f\n", data.scene->sph[0]->c.x, data.scene->sph[0]->c.y, data.scene->sph[0]->c.z);
-//	printf("camera ov\tx: %f\ty: %f\tz: %f\ttheta: %f\n", data.scene->camera->nov_i.x, data.scene->camera->nov_i.y, data.scene->camera->nov_i.z, data.scene->camera->theta);
 	loop(&data);
 	return (0);
 }

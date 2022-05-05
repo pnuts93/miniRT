@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 10:51:16 by pnuti             #+#    #+#             */
-/*   Updated: 2022/04/28 09:04:55 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/05 15:36:46 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,37 +20,39 @@ void	rgb_sanitize(int *channel)
 		*channel = 255;
 }
 
-static void	c_sph(t_data *data, t_rgb *c)
+static void	c_sph(t_data *data, t_rgb *c, t_ray *ray)
 {
-	c->r = data->scene->sph[data->shape_sel[1]]->color.r;
-	c->g = data->scene->sph[data->shape_sel[1]]->color.g;
-	c->b = data->scene->sph[data->shape_sel[1]]->color.b;
+	c->r = data->scene->sph[ray->shape_sel[1]]->color.r;
+	c->g = data->scene->sph[ray->shape_sel[1]]->color.g;
+	c->b = data->scene->sph[ray->shape_sel[1]]->color.b;
 }
 
-static void	c_pla(t_data *data, t_rgb *c)
+static void	c_pla(t_data *data, t_rgb *c, t_ray *ray)
 {
-	c->r = data->scene->pla[data->shape_sel[1]]->color.r;
-	c->g = data->scene->pla[data->shape_sel[1]]->color.g;
-	c->b = data->scene->pla[data->shape_sel[1]]->color.b;
+	c->r = data->scene->pla[ray->shape_sel[1]]->color.r;
+	c->g = data->scene->pla[ray->shape_sel[1]]->color.g;
+	c->b = data->scene->pla[ray->shape_sel[1]]->color.b;
 }
 
-static void	c_cyl(t_data *data, t_rgb *c)
+static void	c_cyl(t_data *data, t_rgb *c, t_ray *ray)
 {
-	c->r = data->scene->cyl[data->shape_sel[1]]->color.r;
-	c->g = data->scene->cyl[data->shape_sel[1]]->color.g;
-	c->b = data->scene->cyl[data->shape_sel[1]]->color.b;
+	c->r = data->scene->cyl[ray->shape_sel[1]]->color.r;
+	c->g = data->scene->cyl[ray->shape_sel[1]]->color.g;
+	c->b = data->scene->cyl[ray->shape_sel[1]]->color.b;
 }
 
-t_uint	get_rgb(float coeff, t_data *data)
+t_uint	get_rgb(float coeff, t_data *data, t_ray *ray)
 {
 	t_rgb	res;
 	t_rgb	shape_c;
-	void	(*f[3])(t_data *data, t_rgb *c);
+	void	(*f[3])(t_data *data, t_rgb *c, t_ray *ray);
 
 	f[0] = &c_sph;
 	f[1] = &c_pla;
 	f[2] = &c_cyl;
-	f[data->shape_sel[0]](data, &shape_c);
+	if (ray->shape_sel[0] == DI)
+		ray->shape_sel[0] = CY; 
+	f[ray->shape_sel[0]](data, &shape_c, ray);
 	res.r = coeff * data->scene->light->ratio * 255;
 	res.g = res.r;
 	res.b = res.r;

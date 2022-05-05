@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 16:23:23 by pnuti             #+#    #+#             */
-/*   Updated: 2022/03/10 18:08:02 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/05 09:49:20 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 static void	translate_point(t_point *p, t_point c)
 {
-	t_point	*tmp;
+	t_point	tmp;
 
 	tmp = diff_vectors(*p, c);
-	import_p(tmp, p);
-	free(tmp);
+	import_p(&tmp, p);
 }
 
 static void	translate_spheres(t_sph **sph, int n, t_point c)

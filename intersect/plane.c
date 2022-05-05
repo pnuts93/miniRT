@@ -6,25 +6,22 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 13:12:27 by pnuti             #+#    #+#             */
-/*   Updated: 2022/04/27 13:12:43 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/05 09:46:04 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_rt.h"
 
-float	inter_plane(t_pla *pla, t_vector ray)
+float	inter_plane(t_pla *pla, t_ray *ray)
 {
 	float	t;
 	float	den;
-	t_point	*tmp;
 
-	den = dot(ray.p2, pla->nov);
+	den = dot(ray->p2, pla->nov);
 	if (isequal(den, 0))
 		return (-1);
-	tmp = diff_vectors(pla->c, ray.p1);
-	t = dot(pla->nov, *tmp) / den;
-	free(tmp);
-	if (t <= 0)
+	t = dot(pla->nov, diff_vectors(pla->c, ray->p1)) / den;
+	if (t < 0 || isequal(t, 0))
 		return (-1);
 	return (t);
 }

@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:37:00 by pnuti             #+#    #+#             */
-/*   Updated: 2022/04/28 16:02:29 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/04 17:34:00 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,17 +88,4 @@ t_scene	*init_scene(t_ns ns)
 	scene->pla = init_pla(ns.np);
 	scene->cyl = init_cyl(ns.ny);
 	return (scene);
-}
-
-t_ns	init_counter()
-{
-	t_ns	ns;
-	
-	ns.nl = 0;
-	ns.na = 0;
-	ns.nc = 0;
-	ns.ny = 0;
-	ns.ns = 0;
-	ns.np = 0;
-	return (ns);
 }

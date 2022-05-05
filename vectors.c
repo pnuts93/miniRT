@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 09:07:14 by pnuti             #+#    #+#             */
-/*   Updated: 2022/02/17 21:48:41 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/05 09:01:52 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,10 @@ float	dot(t_point v1, t_point v2)
 	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
 }
 
-t_point	*mult_vect_scal(t_point v, float s)
+t_point	mult_vect_scal(t_point v, float s)
 {
-	t_point	*res;
+	t_point	res;
 
-	res = (t_point *)malloc(sizeof(t_point));
-	if (!res)
-		return (NULL);
-	set_p(res, v.x * s, v.y * s, v.z * s);
+	set_p(&res, v.x * s, v.y * s, v.z * s);
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 11:39:13 by lhorefto          #+#    #+#             */
-/*   Updated: 2022/03/17 11:07:00 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/05 15:24:31 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static bool	set_cyl_coordinates(char **xyz, char **ov, char **rgb, t_cyl *cyl)
 	return (true);
 }
 
-bool	get_cylinder(char **line, t_cyl *cyl)
+bool	get_cylinder(char **line, int n, t_cyl *cyl)
 {
 	char	**rgb;
 	char	**ov;
@@ -99,6 +99,7 @@ bool	get_cylinder(char **line, t_cyl *cyl)
 		return (berror("Error\nwrong cylinder orientation vector!"));
 	}*/
 	rgb = ft_split(line[5], ',');
+	cyl->n = n - 1;
 	return (set_cyl_coordinates(xyz, ov, rgb, cyl));
 }
 

@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/04/28 16:01:35 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/05 14:22:45 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ enum shape_type
 	SP,
 	PL,
 	CY,
+	DI,
 	NA
 };
 
@@ -60,11 +61,13 @@ typedef struct s_point
 	float	z;
 }	t_point;
 
-typedef struct	s_vector
+typedef struct	s_ray
 {
 	t_point	p1;
 	t_point	p2;
-}	t_vector;
+	float	t;
+	int		shape_sel[3];
+}	t_ray;
 
 typedef struct s_alight
 {
@@ -110,6 +113,7 @@ typedef struct s_cyl
 	float	dia;
 	float	hei;
 	float	phi;
+	int		n;
 	t_rgb	color;
 }	t_cyl;
 
@@ -151,7 +155,6 @@ typedef struct s_data
 	void		*mlx;
 	void		*win;
 	t_screen	screen;
-	int			shape_sel[2];
 	bool		done;
 }	t_data;
 
@@ -172,43 +175,44 @@ bool	get_light(char **line, t_light *light);
 bool	get_alight(char **line, t_alight *alight);
 bool	get_sphere(char **line, t_sph *sph);
 bool	get_plane(char **line, t_pla *pla);
-bool	get_cylinder(char **line, t_cyl *cyl);
+bool	get_cylinder(char **line, int n, t_cyl *cyl);
 float	absf(float n);
 float	modulef(float n, float module);
-float	*quadratic(float a, float b, float c);
+float	quadratic(float a, float b, float c);
 int		isequal(float a, float b);
 void	translate_scene(t_scene *scene);
 void	rotate_scene(t_scene *scene);
 void	ref_cyl(t_cyl **cyl, int n);
-void	rotate_cyl(t_cyl *cyl, t_vector *ray);
-t_uint	get_rgb(float coeff, t_data *data);
+void	rotate_cyl(t_cyl *cyl, t_ray *ray);
+t_uint	get_rgb(float coeff, t_data *data, t_ray *ray);
 float	fmin_pos(float n1, float n2);
-float	get_shape(t_data *data, t_vector ray, int rec);
-t_point	*norm_sphere(t_data *data, t_vector ray, float t, t_point collision);
-t_point	*norm_plane(t_data *data, t_vector ray, float t, t_point collision);
-t_point	*norm_cylinder(t_data *data, t_vector ray, float t, t_point collision);
+void	get_shape(t_data *data, t_ray *ray, int rec);
+t_point	norm_sphere(t_data *data, t_ray *ray, t_point collision);
+t_point	norm_plane(t_data *data, t_ray *ray, t_point collision);
+t_point	norm_cylinder(t_data *data, t_ray *ray, t_point collision);
+t_point	norm_disk(t_data *data, t_ray *ray, t_point collision);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
-float	get_shadow(t_data *data, t_point *p1, t_point *p2, float tlight);
+float	get_shadow(t_data *data, t_point p1, t_point p2, float tlight);
 
 //INTERSECTION
 
-float	inter_sphere(t_sph *sph, t_vector ray);
-float	inter_cylinder(t_cyl *cyl, t_vector ray);
-float	inter_plane(t_pla *pla, t_vector ray);
+float	inter_sphere(t_sph *sph, t_ray *ray);
+float	inter_cylinder(t_cyl *cyl, t_ray *ray);
+float	inter_plane(t_pla *pla, t_ray *ray);
 
 //VECTORS
 
 void	normalise(t_point *v);
 void	set_p(t_point *p, float x, float y, float z);
 void	import_p(t_point *p_src, t_point *p_dst);
-t_point *sum_vectors(t_point a, t_point b);
-t_point	*diff_vectors(t_point a, t_point b);
+t_point sum_vectors(t_point a, t_point b);
+t_point	diff_vectors(t_point a, t_point b);
 float	dot(t_point v1, t_point v2);
-t_point	*cross(t_point a, t_point b);
+t_point	cross(t_point a, t_point b);
 t_point	*multiply_matrix(float matrix[3][3], t_point v);
 t_point	*rotate_axis(float radians, t_point v, char axis);
-t_point	*mult_vect_scal(t_point v, float s);
-t_point	*rotate_quaternion(t_point v, t_point u, float radians);
+t_point	mult_vect_scal(t_point v, float s);
+t_point	rotate_quaternion(t_point v, t_point u, float radians);
 
 //TRIGONOMETRY
 
