@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:22:15 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/05 09:24:15 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/06 18:43:58 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,14 @@ static void	rot_cylinders(t_cyl **cyl, int n, t_point u, float angle)
 {
 	int		i;
 	t_point	tmp;
-	t_point	tmp_dir;
 
 	i = 0;
 	while (i < n)
 	{
 		tmp = rotate_quaternion(cyl[i]->c, u, angle);
-		tmp_dir = sum_vectors(cyl[i]->c, cyl[i]->nov);
 		import_p(&tmp, &cyl[i]->c);
-		tmp = rotate_quaternion(tmp_dir, u, angle);
-		tmp_dir = diff_vectors(tmp, cyl[i]->c);
-		import_p(&tmp_dir, &cyl[i]->nov);
+		tmp = rotate_quaternion(cyl[i]->nov, u, angle);
+		import_p(&tmp, &cyl[i]->nov);
 		i++;
 	}
 }
@@ -55,11 +52,9 @@ static void	rot_planes(t_pla **pla, int n, t_point u, float angle)
 	while (i < n)
 	{
 		tmp = rotate_quaternion(pla[i]->c, u, angle);
-		tmp_dir = sum_vectors(pla[i]->c, pla[i]->nov);
 		import_p(&tmp, &pla[i]->c);
-		tmp = rotate_quaternion(tmp_dir, u, angle);
-		tmp_dir = diff_vectors(tmp, pla[i]->c);
-		import_p(&tmp_dir, &pla[i]->nov);
+		tmp = rotate_quaternion(pla[i]->nov, u, angle);
+		import_p(&tmp, &pla[i]->nov);
 		i++;
 	}
 }
@@ -89,9 +84,10 @@ void	rotate_scene(t_scene *scene)
 	if (!scene->camera->nov_i.z)
 		return ;
 	if (!scene->camera->nov_i.x && !scene->camera->nov_i.y)
-		set_p(&u, 1, 0, 0);
+		set_p(&u, 0, 1, 0);
 	else
 		u = cross(z, scene->camera->nov_i);
+	normalise(&u);
 	scene->camera->theta = get_angle_xy(scene->camera->nov_i);
 	if (isnan(scene->camera->theta))
 		scene->camera->theta = 0;
