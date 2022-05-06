@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/05 14:22:45 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/06 16:54:05 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ void	ref_cyl(t_cyl **cyl, int n);
 void	rotate_cyl(t_cyl *cyl, t_ray *ray);
 t_uint	get_rgb(float coeff, t_data *data, t_ray *ray);
 float	fmin_pos(float n1, float n2);
-void	get_shape(t_data *data, t_ray *ray, int rec);
+void	get_shape(t_data *data, t_ray *ray);
 t_point	norm_sphere(t_data *data, t_ray *ray, t_point collision);
 t_point	norm_plane(t_data *data, t_ray *ray, t_point collision);
 t_point	norm_cylinder(t_data *data, t_ray *ray, t_point collision);

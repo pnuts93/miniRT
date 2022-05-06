@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 10:36:04 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/05 15:18:51 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/06 14:21:39 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	project(t_data *data, t_ray ray, int i, int j)
 	ray.p2.x = sinf(modulef((PI / 2) + deg_to_rad(angle_h), PI)) * cosf(data->scene->camera->theta + deg_to_rad(angle_w));
 	ray.p2.y = sinf((PI / 2) + deg_to_rad(angle_h)) * sinf(modulef(data->scene->camera->theta + deg_to_rad(angle_w), 2 * PI));
 	ray.p2.z = cosf((PI / 2) + deg_to_rad(angle_h));
-	get_shape(data, &ray, 0);
+	get_shape(data, &ray);
 	if (ray.t > 0)
 		my_mlx_pixel_put(&data->img, j, data->screen.h - i, get_pixel(data, &ray, f[ray.shape_sel[0]]));
 }
@@ -56,10 +56,6 @@ void	render(t_data *data)
 	int	j;
 
 	ray.p1 = data->scene->camera->c;
-	/*ray.t = -1;
-	ray.shape_sel[0] = NA;
-	ray.shape_sel[0] = -1;
-	set_p(&ray.p2, 0, 0, 0);*/
 	i = 0;
 	while (i < data->screen.h)
 	{

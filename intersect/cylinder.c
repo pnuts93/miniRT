@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:51:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/05 16:54:08 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/06 16:53:56 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,16 @@ static float	check_disks(t_cyl *cyl, t_ray *ray, int n_disk)
 	float	t;
 
 	den = dot(ray->p2, cyl->nov);
-	if (!isequal(den, 0))
+	if (islessgreater(den, 0))
 	{
-		t = dot(cyl->nov, diff_vectors(sum_vectors(cyl->c, mult_vect_scal(cyl->nov, cyl->hei * n_disk)), ray->p1)) / den;
+		t = dot(cyl->nov, diff_vectors(sum_vectors(cyl->c,
+			mult_vect_scal(cyl->nov, cyl->hei * n_disk)), ray->p1)) / den;
 		if (islessequal(t, 0))
 			return (-1);
-		collision = mult_vect_scal(sum_vectors(ray->p1, ray->p2), t);
-		v = diff_vectors(collision, sum_vectors(cyl->c, mult_vect_scal(cyl->nov, cyl->hei * n_disk)));
-		if (sqrtf(dot(v, v)) < cyl->dia / 2 && t < ray->t)
+		collision = sum_vectors(ray->p1, mult_vect_scal(ray->p2, t));
+		v = diff_vectors(collision, sum_vectors(cyl->c,
+			mult_vect_scal(cyl->nov, cyl->hei * n_disk)));
+		if ((sqrtf(dot(v, v)) < cyl->dia / 2) && (t < ray->t || ray->t < 0))
 		{
 			ray->t = t;
 			ray->shape_sel[0] = DI;
@@ -68,14 +70,12 @@ float	inter_cylinder(t_cyl *cyl, t_ray *ray)
 	float	res;
 	float	tmp;
 
-	tmp = check_disks(cyl, ray, 0);
-	res = check_disks(cyl, ray, 1);
-	tmp = fmin_pos(tmp, res);
+	tmp = fmin_pos(check_disks(cyl, ray, 0), check_disks(cyl, ray, 1));
 	find_abc(cyl, ray, abc);
-	if (islessequal(powf(abc[1], 2) - 4.0 * abc[0] * abc[2], 0))
+	if (islessequal(powf(abc[1], 2) - 4.0 * abc[0] * abc[2], 0) && tmp < 0)
 		return (-1);
 	res = quadratic(abc[0], abc[1], abc[2]);
-	if (tmp > 0 && tmp < res)
+	if ((tmp > 0 && tmp < res) || res < 0)
 		return (-1);
 	else if (isgreaterequal(res, 0))
 		return (check_inter(cyl, ray, res));
