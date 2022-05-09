@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:37:00 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/04 17:34:00 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/09 08:01:23 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@ void	init(t_data *data, char *argv[])
 	data->screen.w = 0;
 	data->screen.h = 0;
 	mlx_get_screen_size(data->mlx, &data->screen.w, &data->screen.h);
-	data->win = mlx_new_window(data->mlx, data->screen.w, data->screen.h, argv[1]);
+	data->win = mlx_new_window(data->mlx, data->screen.w, data->screen.h, \
+		argv[1]);
 	data->img.img = mlx_new_image(data->mlx, data->screen.w, data->screen.h);
-	data->img.address = mlx_get_data_addr(data->img.img, &data->img.bppx, &data->img.len, &data->img.endian);
+	data->img.address = mlx_get_data_addr(data->img.img, &data->img.bppx, \
+		&data->img.len, &data->img.endian);
 	data->done = false;
 }
 
@@ -72,7 +74,7 @@ static t_cyl	**init_cyl(int n)
 t_scene	*init_scene(t_ns ns)
 {
 	t_scene	*scene;
-	
+
 	scene = (t_scene *)malloc(sizeof(t_scene));
 	if (!scene)
 		return (NULL);

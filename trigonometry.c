@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 21:49:06 by pnuti             #+#    #+#             */
-/*   Updated: 2022/02/19 11:35:36 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/09 09:12:52 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ static float	get_quadrant(float x, float y)
 
 float	get_angle_xy(t_point a)
 {
-	return (asin(absf(a.y) / sqrtf(powf(a.x, 2) + powf(a.y, 2))) * get_quadrant(a.x, a.y));
+	return (asin(absf(a.y) / sqrtf(powf(a.x, 2) + powf(a.y, 2))) * \
+		get_quadrant(a.x, a.y));
 }

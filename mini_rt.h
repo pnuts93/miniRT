@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/06 16:54:05 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/09 08:05:29 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 
 //INPUT
 
-typedef unsigned int t_uint;
+typedef unsigned int	t_uint;
 
-enum shape_type
+enum e_shape_type
 {
 	SP,
 	PL,
@@ -37,14 +37,14 @@ enum shape_type
 	NA
 };
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void	*img;
 	char	*address;
 	int		bppx;
 	int		len;
 	int		endian;
-}				t_img;
+}	t_img;
 
 typedef struct s_rgb
 {
@@ -53,7 +53,6 @@ typedef struct s_rgb
 	int	b;
 }	t_rgb;
 
-
 typedef struct s_point
 {
 	float	x;
@@ -61,7 +60,7 @@ typedef struct s_point
 	float	z;
 }	t_point;
 
-typedef struct	s_ray
+typedef struct s_ray
 {
 	t_point	p1;
 	t_point	p2;
@@ -160,7 +159,7 @@ typedef struct s_data
 
 void	init(t_data *data, char *argv[]);
 t_scene	*init_scene(t_ns ns);
-t_ns	init_counter();
+t_ns	init_counter(void);
 void	purge(t_data *data);
 void	purge_scene(t_scene *scene);
 void	loop(t_data *data);
@@ -185,6 +184,7 @@ void	rotate_scene(t_scene *scene);
 void	ref_cyl(t_cyl **cyl, int n);
 void	rotate_cyl(t_cyl *cyl, t_ray *ray);
 t_uint	get_rgb(float coeff, t_data *data, t_ray *ray);
+void	set_rgb_shape(void (*f[3])(t_data*, t_rgb*, t_ray*));
 float	fmin_pos(float n1, float n2);
 void	get_shape(t_data *data, t_ray *ray);
 t_point	norm_sphere(t_data *data, t_ray *ray, t_point collision);
@@ -205,7 +205,7 @@ float	inter_plane(t_pla *pla, t_ray *ray);
 void	normalise(t_point *v);
 void	set_p(t_point *p, float x, float y, float z);
 void	import_p(t_point *p_src, t_point *p_dst);
-t_point sum_vectors(t_point a, t_point b);
+t_point	sum_vectors(t_point a, t_point b);
 t_point	diff_vectors(t_point a, t_point b);
 float	dot(t_point v1, t_point v2);
 t_point	cross(t_point a, t_point b);

@@ -6,13 +6,11 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:51:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/07 10:41:30 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/09 07:28:51 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_rt.h"
-
-//	source: http://www.illusioncatalyst.com/notes_files/mathematics/line_cylinder_intersection.php
 
 static void	find_abc(t_cyl *cyl, t_ray *ray, float abc[3])
 {
@@ -34,12 +32,12 @@ static float	check_disks(t_cyl *cyl, t_ray *ray, int n_disk)
 	den = dot(ray->p2, cyl->nov);
 	if (islessgreater(den, 0))
 	{
-		t = dot(cyl->nov, diff_vectors(sum_vectors(cyl->c,
+		t = dot(cyl->nov, diff_vectors(sum_vectors(cyl->c, \
 			mult_vect_scal(cyl->nov, cyl->hei * n_disk)), ray->p1)) / den;
 		if (islessequal(t, 0))
 			return (-1);
 		collision = sum_vectors(ray->p1, mult_vect_scal(ray->p2, t));
-		v = diff_vectors(collision, sum_vectors(cyl->c,
+		v = diff_vectors(collision, sum_vectors(cyl->c, \
 			mult_vect_scal(cyl->nov, cyl->hei * n_disk)));
 		if ((sqrtf(dot(v, v)) < cyl->dia / 2) && (t < ray->t || ray->t < 0))
 		{
@@ -57,7 +55,7 @@ static float	check_inter(t_cyl *cyl, t_ray *ray, float res)
 {
 	float	cmp;
 
-	cmp = dot(diff_vectors(sum_vectors(ray->p1,
+	cmp = dot(diff_vectors(sum_vectors(ray->p1, \
 		mult_vect_scal(ray->p2, res)), cyl->c), cyl->nov);
 	if (isgreaterequal(cmp, 0) && islessequal(cmp, cyl->hei))
 		return (res);

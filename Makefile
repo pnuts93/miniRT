@@ -6,7 +6,7 @@
 #    By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/11 16:12:04 by pnuti             #+#    #+#              #
-#    Updated: 2022/05/05 09:47:54 by pnuti            ###   ########.fr        #
+#    Updated: 2022/05/09 07:51:28 by pnuti            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ FLAGS	= -Wall -Wextra -Werror -g
 SRC_GEN =	main.c init.c loop_hooks.c purge.c render.c utils.c				\
 			parser.c parser2.c parser3.c vectors.c vectors2.c rotation.c	\
 			rotation2.c	trigonometry.c generic_math.c rot_quater.c			\
-			scene_translate.c scene_rotate.c get_rgb.c						\
+			scene_translate.c scene_rotate.c get_rgb.c	get_rgb_shapes.c	\
 			get_shape.c get_normal.c get_shadow.c init2.c
 DIR_INTER = intersect
 SRC_INTER =	$(DIR_INTER)/circle.c $(DIR_INTER)/cylinder.c $(DIR_INTER)/plane.c

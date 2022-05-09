@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:26:17 by pnuti             #+#    #+#             */
-/*   Updated: 2022/04/26 09:39:47 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/09 08:21:32 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,15 @@ void	purge_scene(t_scene *scene)
 	free(scene->light);
 	free(scene->camera);
 	while (i < scene->ns.np)
-	{
-		free(scene->pla[i]);
-		i++;
-	}
+		free(scene->pla[i++]);
 	free(scene->pla);
 	i = 0;
 	while (i < scene->ns.ns)
-	{
-		free(scene->sph[i]);
-		i++;
-	}
+		free(scene->sph[i++]);
 	free(scene->sph);
 	i = 0;
 	while (i < scene->ns.ny)
-	{
-		free(scene->cyl[i]);
-		i++;
-	}
+		free(scene->cyl[i++]);
 	free(scene->cyl);
 	free(scene);
 }

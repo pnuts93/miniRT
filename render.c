@@ -6,13 +6,14 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 10:36:04 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/06 14:21:39 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/09 08:55:55 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-t_uint	get_pixel(t_data *data, t_ray *ray, t_point (*f)(t_data*, t_ray*, t_point))
+t_uint	get_pixel(t_data *data, t_ray *ray, \
+	t_point (*f)(t_data*, t_ray*, t_point))
 {
 	t_point	collision;
 	t_point	v_light;
@@ -33,27 +34,32 @@ void	project(t_data *data, t_ray ray, int i, int j)
 {
 	float	angle_w;
 	float	angle_h;
-	t_point	(*f[4])(t_data *data, t_ray *ray, t_point collision);
+	t_point	(*f[4])(t_data*, t_ray*, t_point);
 
 	f[0] = &norm_sphere;
 	f[1] = &norm_plane;
 	f[2] = &norm_cylinder;
 	f[3] = &norm_disk;
-	angle_w = (data->scene->camera->fov_w / 2) - ((data->scene->camera->fov_w / data->screen.w) * (float)j);
-	angle_h = (data->scene->camera->fov_h / 2) - ((data->scene->camera->fov_h / data->screen.h) * (float)i);
-	ray.p2.x = sinf(modulef((PI / 2) + deg_to_rad(angle_h), PI)) * cosf(data->scene->camera->theta + deg_to_rad(angle_w));
-	ray.p2.y = sinf((PI / 2) + deg_to_rad(angle_h)) * sinf(modulef(data->scene->camera->theta + deg_to_rad(angle_w), 2 * PI));
+	angle_w = (data->scene->camera->fov_w / 2) - \
+		((data->scene->camera->fov_w / data->screen.w) * (float)j);
+	angle_h = (data->scene->camera->fov_h / 2) - \
+		((data->scene->camera->fov_h / data->screen.h) * (float)i);
+	ray.p2.x = sinf(modulef((PI / 2) + deg_to_rad(angle_h), PI)) * \
+		cosf(data->scene->camera->theta + deg_to_rad(angle_w));
+	ray.p2.y = sinf((PI / 2) + deg_to_rad(angle_h)) * \
+		sinf(modulef(data->scene->camera->theta + deg_to_rad(angle_w), 2 * PI));
 	ray.p2.z = cosf((PI / 2) + deg_to_rad(angle_h));
 	get_shape(data, &ray);
 	if (ray.t > 0)
-		my_mlx_pixel_put(&data->img, j, data->screen.h - i, get_pixel(data, &ray, f[ray.shape_sel[0]]));
+		my_mlx_pixel_put(&data->img, j, data->screen.h - i, \
+		get_pixel(data, &ray, f[ray.shape_sel[0]]));
 }
 
 void	render(t_data *data)
 {
 	t_ray	ray;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	ray.p1 = data->scene->camera->c;
 	i = 0;

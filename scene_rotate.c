@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:22:15 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/06 18:43:58 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/09 09:11:20 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ static void	rotate_geom(t_scene *scene, t_point u)
 	rot_planes(scene->pla, scene->ns.np, u, 1.570796 - scene->camera->phi);
 	tmp = rotate_quaternion(scene->light->c, u, 1.570796 - scene->camera->phi);
 	import_p(&tmp, &scene->light->c);
-	tmp = rotate_quaternion(scene->camera->nov_i, u, 1.570796 - scene->camera->phi);
+	tmp = rotate_quaternion(scene->camera->nov_i, u, \
+		1.570796 - scene->camera->phi);
 	import_p(&tmp, &scene->camera->nov_i);
 	scene->camera->phi = PI / 2;
 	if (isequal(scene->camera->theta, 0))

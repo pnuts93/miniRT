@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 09:49:20 by lhorefto          #+#    #+#             */
-/*   Updated: 2022/05/05 14:13:53 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/09 08:12:16 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,22 @@ static char	*raw(char *path)
 	return (ft_strdup(buff));
 }
 
+static void	cmp_input(char **lines, int i, t_ns *ns)
+{
+	if (!ft_strncmp(lines[i], "A ", 2))
+		ns->na++;
+	else if (!ft_strncmp(lines[i], "L ", 2))
+		ns->nl++;
+	else if (!ft_strncmp(lines[i], "C ", 2))
+		ns->nc++;
+	else if (!ft_strncmp(lines[i], "sp ", 3))
+		ns->ns++;
+	else if (!ft_strncmp(lines[i], "pl ", 3))
+		ns->np++;
+	else if (!ft_strncmp(lines[i], "cy ", 3))
+		ns->ny++;
+}
+
 static t_ns	count_elements(char **lines)
 {
 	t_ns	ns;
@@ -35,18 +51,7 @@ static t_ns	count_elements(char **lines)
 	i = 0;
 	while (lines[i])
 	{
-		if (!ft_strncmp(lines[i], "A ", 2))
-			ns.na++;
-		else if (!ft_strncmp(lines[i], "L ", 2))
-			ns.nl++;
-		else if (!ft_strncmp(lines[i], "C ", 2))
-			ns.nc++;
-		else if (!ft_strncmp(lines[i], "sp ", 3))
-			ns.ns++;
-		else if (!ft_strncmp(lines[i], "pl ", 3))
-			ns.np++;
-		else if (!ft_strncmp(lines[i], "cy ", 3))
-			ns.ny++;
+		cmp_input(lines, i, &ns);
 		i++;
 	}
 	if (ns.na != 1 || ns.nl != 1 || ns.nc != 1)

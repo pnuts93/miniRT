@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 11:07:19 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/06 15:10:09 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/09 07:31:23 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ t_point	norm_cylinder(t_data *data, t_ray *ray, t_point collision)
 {
 	t_point	res;
 
-	res = diff_vectors(collision, sum_vectors(
-		mult_vect_scal(data->scene->cyl[ray->shape_sel[1]]->nov,
-			dot(data->scene->cyl[ray->shape_sel[1]]->nov, 
-			diff_vectors(collision, data->scene->cyl[ray->shape_sel[1]]->c))),
+	res = diff_vectors(collision, sum_vectors(\
+		mult_vect_scal(data->scene->cyl[ray->shape_sel[1]]->nov, \
+			dot(data->scene->cyl[ray->shape_sel[1]]->nov, \
+			diff_vectors(collision, data->scene->cyl[ray->shape_sel[1]]->c))), \
 		data->scene->cyl[ray->shape_sel[1]]->c));
 	normalise(&res);
 	return (res);

@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 11:44:34 by lhorefto          #+#    #+#             */
-/*   Updated: 2022/05/04 17:59:32 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/09 08:14:07 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ bool	get_camera(char **line, t_cam *camera)
 
 static void	set_sphere_coordinates(char **xyz, char **rgb, t_sph *sph)
 {
-	set_p(&sph->c,ft_atof(xyz[0]), ft_atof(xyz[1]), ft_atof(xyz[2]));
+	set_p(&sph->c, ft_atof(xyz[0]), ft_atof(xyz[1]), ft_atof(xyz[2]));
 	free_2darr(xyz);
 	sph->color.r = ft_atoi(rgb[0]);
 	sph->color.g = ft_atoi(rgb[1]);

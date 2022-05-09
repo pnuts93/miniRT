@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 17:59:01 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/06 16:53:32 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/09 08:00:24 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static void	isin_circle(t_data *data, t_ray *ray)
 	while (i < data->scene->ns.ns)
 	{
 		t = inter_sphere(data->scene->sph[i], ray);
-		if ((isless(ray->t, 0) && isgreaterequal(t, 0)) || (isgreaterequal(t, 0) && isless(t, ray->t)))
+		if ((isless(ray->t, 0) && isgreaterequal(t, 0))
+			|| (isgreaterequal(t, 0) && isless(t, ray->t)))
 		{
 			ray->t = t;
 			ray->shape_sel[0] = SP;
@@ -41,7 +42,8 @@ static void	isin_plane(t_data *data, t_ray *ray)
 	while (i < data->scene->ns.np)
 	{
 		t = inter_plane(data->scene->pla[i], ray);
-		if ((isless(ray->t, 0) && isgreaterequal(t, 0)) || (isgreaterequal(t, 0) && isless(t, ray->t)))
+		if ((isless(ray->t, 0) && isgreaterequal(t, 0))
+			|| (isgreaterequal(t, 0) && isless(t, ray->t)))
 		{
 			ray->t = t;
 			ray->shape_sel[0] = PL;
@@ -61,7 +63,8 @@ static void	isin_cylinder(t_data *data, t_ray *ray)
 	while (i < data->scene->ns.ny)
 	{
 		t = inter_cylinder(data->scene->cyl[i], ray);
-		if ((isless(ray->t, 0) && isgreaterequal(t, 0)) || (isgreaterequal(t, 0) && isless(t, ray->t)))
+		if ((isless(ray->t, 0) && isgreaterequal(t, 0))
+			|| (isgreaterequal(t, 0) && isless(t, ray->t)))
 		{
 			ray->t = t;
 			ray->shape_sel[0] = CY;

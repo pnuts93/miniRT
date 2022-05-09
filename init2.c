@@ -6,16 +6,16 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 14:24:51 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/04 14:26:32 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/09 08:01:47 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-t_ns	init_counter()
+t_ns	init_counter(void)
 {
 	t_ns	ns;
-	
+
 	ns.nl = 0;
 	ns.na = 0;
 	ns.nc = 0;

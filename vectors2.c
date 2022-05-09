@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 18:59:26 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/05 09:03:49 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/09 09:14:26 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_point	cross(t_point a, t_point b)
 	return (res);
 }
 
-t_point sum_vectors(t_point a, t_point b)
+t_point	sum_vectors(t_point a, t_point b)
 {
 	t_point	res;
 
