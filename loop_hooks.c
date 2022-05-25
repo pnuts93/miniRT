@@ -6,16 +6,38 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:12:05 by pnuti             #+#    #+#             */
-/*   Updated: 2022/04/28 16:02:43 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/25 11:40:43 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
+static void	init_sel(t_select *sel)
+{
+	sel->step = 0;
+	sel->obj = -1;
+	sel->obj_id = 0;
+	sel->dimension = -1;
+	sel->magnitude = -1;
+}
+
 static int	handle_key(int kn, t_data *data)
 {
+	static t_select	sel;
+	static int		init;
+	void			(*f[4])(t_data*, t_select*, int);
+
+	f[0] = &handle_step0;
+	f[1] = &handle_step1;
+	if (!init)
+	{
+		init_sel(&sel);
+		init = 1;
+	}
 	if (kn == 65307)
 		purge(data);
+	else
+		f[sel.step](data, &sel, kn);
 	return (0);
 }
 

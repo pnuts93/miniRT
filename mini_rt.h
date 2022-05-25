@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/09 10:12:26 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/25 11:51:44 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,15 @@ enum e_shape_type
 	CY,
 	DI,
 	NA
+};
+
+enum e_obj_sel
+{
+	SPHERE,
+	PLANE,
+	CYLINDER,
+	LIGHT,
+	CAMERA
 };
 
 typedef struct s_img
@@ -147,6 +156,40 @@ typedef struct s_screen
 	int	h;
 }	t_screen;
 
+typedef struct s_select
+{
+	int		step;	// selection step
+	/*
+
+		step 0:
+		SELECT object:
+		sphere(s)
+		....
+
+		step 1;
+		select object number
+		< >
+
+
+		step 2:
+		select action:
+
+
+		step 3:
+
+		case (rot/transl)			case (redimension)
+		choose axis [x, y, z]		choose dimension
+
+	*/
+	int		obj;	// s(1): sphere, p(2): plane, y(3): cylinder, l(4): light, c(5): camera
+	int		obj_id;	// object n
+	int		max_id;
+	int		action;	// r(1): rotate, t(2): translate, d(3): redimension
+	int		dimension; // x/w(1): x axis for rotation and translation / dimension 1 for redimension, etc.
+	float	magnitude; // how much should one object be translated/rotated/redimensioned
+}	t_select;
+
+
 typedef struct s_data
 {
 	t_img		img;
@@ -218,5 +261,10 @@ t_point	rotate_quaternion(t_point v, t_point u, float radians);
 
 float	deg_to_rad(float a);
 float	get_angle_xy(t_point a);
+
+//HOOKS
+
+void	handle_step0(t_data *data, t_select *sel, int kn);
+void	handle_step1(t_data *data, t_select *sel, int kn);
 
 #endif
