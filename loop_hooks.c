@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:12:05 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/25 11:40:43 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/26 12:30:12 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	init_sel(t_select *sel)
 	sel->step = 0;
 	sel->obj = -1;
 	sel->obj_id = 0;
-	sel->dimension = -1;
+	sel->dimension = 0;
 	sel->magnitude = -1;
 }
 
@@ -29,6 +29,9 @@ static int	handle_key(int kn, t_data *data)
 
 	f[0] = &handle_step0;
 	f[1] = &handle_step1;
+	f[2] = &handle_step2;
+	f[3] = &handle_step3;
+	f[4] = &handle_step4;
 	if (!init)
 	{
 		init_sel(&sel);

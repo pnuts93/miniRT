@@ -6,22 +6,20 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 10:47:11 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/25 12:01:41 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/26 12:38:00 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-void	step0(t_data *data, t_select *sel)
+void	step0(t_data *data)
 {
-	mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, "");
-	mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, 
-		"SELECT an object:\n\
-		S: sphere\n\
-		P: plane\n\
-		Y: cylinder\n\
-		L: light\n\
-		C: camera\n");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET, 0xFFFFFFFF, "SELECT an object:");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE, 0xFFFFFFFF, "S: sphere");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 2, 0xFFFFFFFF, "P: plane");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 3, 0xFFFFFFFF, "Y: cylinder");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 4, 0xFFFFFFFF, "L: light");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 5, 0xFFFFFFFF, "C: camera");
 }
 
 void	step1(t_data *data, t_select *sel)
@@ -29,11 +27,59 @@ void	step1(t_data *data, t_select *sel)
 	char	*obj_id;
 
 	obj_id = ft_itoa(sel->obj_id);
-	mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, 
+	mlx_string_put(data->mlx, data->win, 50, 50, 0xFFFFFFFF, \
 		"SELECT the object number (press ENTER to confirm):\n\
-		← | →");
+		← | →\n\n\
+		B: back");
 	mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, obj_id);
 	free(obj_id);
+}
+
+void	step2(t_data *data, t_select *sel)
+{
+	mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, \
+		"SELECT an action:\n\
+		T: translation\n\
+		R: rotation\n");
+	if (sel->obj == SPHERE || sel->obj == CYLINDER)
+	{
+		mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, "D: redimension");
+	}
+	mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, "B: back");
+}
+
+void	step3(t_data *data, t_select *sel)
+{
+	if (sel->action != RED)
+	{
+		mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, \
+			"SELECT an axis:\n\
+			[ x | y | z ]");
+	}
+	else
+	{
+		mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, \
+			"SELECT a dimension:\n\
+			R: ray");
+		if (sel->obj == CYLINDER)
+		{
+			mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, "H: height");
+		}
+	}
+	mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, "B: back");
+}
+
+void	step4(t_data *data, t_select *sel)
+{
+	char	*magnitude;
+
+	magnitude = ft_itoa(sel->magnitude);
+	mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, \
+		"SELECT a magnitude (press ENTER to confirm):\n\
+		← | →\n\n\
+		B: back");
+	mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, magnitude);
+	free(magnitude);
 }
 
 void	handle_step0(t_data *data, t_select *sel, int kn)
@@ -64,10 +110,84 @@ void	handle_step1(t_data *data, t_select *sel, int kn)
 	shape_sel[2] = data->scene->ns.ny;
 	shape_sel[3] = data->scene->ns.nl;
 	shape_sel[4] = data->scene->ns.nc;
-	if (kn == 42)
+	if (kn == 65363/*right arrow*/)
 		sel->obj_id = (sel->obj_id + 1) % shape_sel[sel->obj];
-	else if (kn == 24 && sel->obj_id > 0)
+	else if (kn == 65361/*left arrow*/ && sel->obj_id > 0)
 		sel->obj_id = (sel->obj_id - 1) % shape_sel[sel->obj];
-	else if (kn == 1)
+	else if (kn == 65293 /*enter*/)
+	{
 		sel->step++;
+		step2(data, sel);
+	}
+	else if (ft_toupper(kn) == 'B')
+	{
+		sel->step--;
+		step0(data);
+	}
+}
+
+void	handle_step2(t_data *data, t_select *sel, int kn)
+{
+	if (ft_toupper(kn) == 'T')
+		sel->action = TRA;
+	else if (ft_toupper(kn) == 'R')
+		sel->action = ROT;
+	else if (ft_toupper(kn) == 'D' && (sel->obj == SPHERE || sel->obj == CYLINDER))
+		sel->action = RED;
+	else if (ft_toupper(kn) == 'B')
+	{
+		sel->step--;
+		step1(data, sel);
+		return ;
+	}
+	else
+		return ;
+	step3(data, sel);
+}
+
+void	handle_step3(t_data *data, t_select *sel, int kn)
+{
+	if (ft_toupper(kn) == 'B')
+	{
+		sel->step--;
+		sel->dimension = 0;
+		step2(data, sel);
+		return ;
+	}
+	if (sel->action != RED)
+	{
+		if (ft_toupper(kn) == 'X')
+			sel->dimension = 'x';
+		else if (ft_toupper(kn) == 'Y')
+			sel->dimension = 'y';
+		else if (ft_toupper(kn) == 'Z')
+			sel->dimension = 'z';
+	}
+	else
+	{
+		if (ft_toupper(kn) == 'R')
+			sel->dimension = 'r';
+		else if (ft_toupper(kn) == 'H')
+			sel->dimension = 'h';
+	}
+	if (sel->dimension)
+		step4(data, sel);
+}
+
+void	handle_step4(t_data *data, t_select *sel, int kn)
+{
+	if (kn == 65363/*right arrow*/)
+		sel->magnitude++;
+	else if (kn == 65361/*left arrow*/ || (kn == 24 && sel->magnitude > 0 && sel->action == RED))
+		sel->magnitude--;
+	else if (kn == 65293 /*enter*/)
+	{
+		sel->step = 0;
+		step0(data);
+	}
+	else if (ft_toupper(kn) == 'B')
+	{
+		sel->step--;
+		step3(data, sel);
+	}
 }

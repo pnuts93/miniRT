@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 10:36:04 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/09 14:54:56 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/26 12:24:47 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ void	render(t_data *data)
 		i++;
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
+	step0(data);
 	data->done = true;
 }

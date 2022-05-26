@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/25 11:51:44 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/26 12:35:58 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define MINI_RT_H
 
 # define PI 3.14159
+# define OFFSET 100
+# define LINE 20
 
 # include "libft/libft.h"
 # include "minilibx-linux/mlx.h"
@@ -44,6 +46,13 @@ enum e_obj_sel
 	CYLINDER,
 	LIGHT,
 	CAMERA
+};
+
+enum e_action
+{
+	TRA,
+	ROT,
+	RED
 };
 
 typedef struct s_img
@@ -185,7 +194,7 @@ typedef struct s_select
 	int		obj_id;	// object n
 	int		max_id;
 	int		action;	// r(1): rotate, t(2): translate, d(3): redimension
-	int		dimension; // x/w(1): x axis for rotation and translation / dimension 1 for redimension, etc.
+	char	dimension; // x/w(1): x axis for rotation and translation / dimension 1 for redimension, etc.
 	float	magnitude; // how much should one object be translated/rotated/redimensioned
 }	t_select;
 
@@ -264,7 +273,11 @@ float	get_angle_xy(t_point a);
 
 //HOOKS
 
+void	step0(t_data *data);
 void	handle_step0(t_data *data, t_select *sel, int kn);
 void	handle_step1(t_data *data, t_select *sel, int kn);
+void	handle_step2(t_data *data, t_select *sel, int kn);
+void	handle_step3(t_data *data, t_select *sel, int kn);
+void	handle_step4(t_data *data, t_select *sel, int kn);
 
 #endif
