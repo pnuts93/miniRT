@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: bkeskint <bkeskint@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 09:38:04 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/09 09:09:44 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/27 17:09:30 by bkeskint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-static int	matrix_zero(float matrix[3][3])
+static void	matrix_zero(float matrix[3][3])
 {
 	int	i;
 	int	j;

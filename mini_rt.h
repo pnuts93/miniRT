@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: bkeskint <bkeskint@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/26 12:35:58 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/27 17:05:13 by bkeskint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 # define LINE 20
 
 # include "libft/libft.h"
-# include "minilibx-linux/mlx.h"
+# include "mlx/mlx.h"
+//# include "mlxmac/mlx.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>

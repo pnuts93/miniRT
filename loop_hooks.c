@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_hooks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: bkeskint <bkeskint@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:12:05 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/26 12:30:12 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/27 17:08:21 by bkeskint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	handle_key(int kn, t_data *data)
 {
 	static t_select	sel;
 	static int		init;
-	void			(*f[4])(t_data*, t_select*, int);
+	void			(*f[5])(t_data*, t_select*, int);
 
 	f[0] = &handle_step0;
 	f[1] = &handle_step1;
