@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 11:07:19 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/09 07:31:23 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/27 17:28:38 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_point	norm_sphere(t_data *data, t_ray *ray, t_point collision)
 
 t_point	norm_plane(t_data *data, t_ray *ray, t_point collision)
 {
+	set_p(&collision, 0, 0, 0);
 	if (dot(ray->p2, data->scene->pla[ray->shape_sel[1]]->nov) < 0)
 		return (mult_vect_scal(data->scene->pla[ray->shape_sel[1]]->nov, 1));
 	else
@@ -44,6 +45,7 @@ t_point	norm_cylinder(t_data *data, t_ray *ray, t_point collision)
 
 t_point	norm_disk(t_data *data, t_ray *ray, t_point collision)
 {
+	set_p(&collision, 0, 0, 0);
 	if (dot(ray->p2, data->scene->cyl[ray->shape_sel[1]]->nov) < 0)
 		return (mult_vect_scal(data->scene->cyl[ray->shape_sel[1]]->nov, 1));
 	return (mult_vect_scal(data->scene->cyl[ray->shape_sel[1]]->nov, -1));

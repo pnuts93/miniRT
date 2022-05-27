@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bkeskint <bkeskint@student.42wolfsburg.de> +#+  +:+       +#+         #
+#    By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/27 11:54:55 by bkeskint          #+#    #+#              #
-#    Updated: 2022/05/27 12:02:34 by bkeskint         ###   ########.fr        #
+#    Updated: 2022/05/27 18:05:24 by pnuti            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ SRC_GEN		=	main.c init.c loop_hooks.c purge.c render.c utils.c				\
 			scene_translate.c scene_rotate.c get_rgb.c	get_rgb_shapes.c	\
 			get_shape.c get_normal.c get_shadow.c init2.c keys.c
 OBJ		= $(SRC:.c=.o)
-# LIBS	= -L libft
 
 DIR_INTER = intersect
 SRC_INTER =	$(DIR_INTER)/circle.c $(DIR_INTER)/cylinder.c $(DIR_INTER)/plane.c
@@ -32,11 +31,8 @@ UNAME := $(shell uname)
 ifeq ($(UNAME), Linux)
 MINILIBX = ./mlx
 
-%.o: %.c
-		${CC} ${FLAGS} -I/usr/include -Imlx -O3 -c $< -o ${<:.c=.o}
-
-$(NAME): $(SRC) complibs
-	$(CC) $(SRC) $(EXT_LIB) -g $(FLAGS) -L/usr/include/X11/extensions -lX11 -lXext -L $(LIBFT) -lft -o $(NAME)
+$(NAME): $(OBJ) complibs
+	$(CC) $(OBJ) -g $(FLAGS) -L $(LIBFT) -lft -L $(MINILIBX) -lmlx -lXext -lX11 -lm -lz -o $(NAME)
 
 endif
 
@@ -52,9 +48,6 @@ $(NAME): $(SRC) complibs
 endif
 
 all : $(NAME)
-
-# $(NAME) : $(OBJ) complibs
-# 	$(CC) $(FLAGS) $(OBJ) $(LIBS) -o $(NAME)
 
 complibs :
 	cd $(LIBFT) && make -s --no-print-directory

@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:22:15 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/09 09:11:20 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/27 17:24:59 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static void	rot_planes(t_pla **pla, int n, t_point u, float angle)
 {
 	int		i;
 	t_point	tmp;
-	t_point	tmp_dir;
 
 	i = 0;
 	while (i < n)

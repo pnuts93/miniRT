@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 09:49:20 by lhorefto          #+#    #+#             */
-/*   Updated: 2022/05/09 08:12:16 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/27 17:46:06 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ static t_ns	count_elements(char **lines)
 
 static bool	handle_line(t_scene *scene, char **line)
 {
+	int	n_c;
+
+	n_c = scene->cc;
 	if (!ft_strncmp(line[0], "A", 3))
 		return (get_alight(line, scene->alight));
 	else if (!ft_strncmp(line[0], "L", 3))
@@ -76,7 +79,7 @@ static bool	handle_line(t_scene *scene, char **line)
 	else if (!ft_strncmp(line[0], "pl", 4))
 		return (get_plane(line, scene->pla[scene->cp++]));
 	else if (!ft_strncmp(line[0], "cy", 4))
-		return (get_cylinder(line, scene->cc, scene->cyl[scene->cc++]));
+		return (get_cylinder(line, n_c, scene->cyl[scene->cc++]));
 	else
 		return (berror("Error\nUnknown identifier in the scene!"));
 }
