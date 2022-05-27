@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:37:00 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/09 08:01:23 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/27 18:35:50 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ void	init(t_data *data, char *argv[])
 	data->img.img = mlx_new_image(data->mlx, data->screen.w, data->screen.h);
 	data->img.address = mlx_get_data_addr(data->img.img, &data->img.bppx, \
 		&data->img.len, &data->img.endian);
+	data->cmd_backg.img = mlx_new_image(data->mlx, data->screen.w / 8, \
+		data->screen.h / 6);
+	data->cmd_backg.address = mlx_get_data_addr(data->cmd_backg.img, \
+		&data->cmd_backg.bppx, &data->cmd_backg.len, &data->cmd_backg.endian);
+	init_backg(data);
 	data->done = false;
 }
 

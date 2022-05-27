@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 14:24:51 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/09 08:01:47 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/27 18:37:05 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,22 @@ t_ns	init_counter(void)
 	ns.ns = 0;
 	ns.np = 0;
 	return (ns);
+}
+
+void	init_backg(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < data->screen.h / 6)
+	{
+		j = 0;
+		while (j < data->screen.w / 8)
+		{
+			my_mlx_pixel_put(&data->cmd_backg, j, i, 0x55555555);
+			j++;
+		}
+		i++;
+	}
 }

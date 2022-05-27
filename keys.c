@@ -6,14 +6,37 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 10:47:11 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/26 12:38:00 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/27 22:20:03 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
+void	dispatch(t_data *data, t_select *sel)
+{
+	void	(*f[5][3])(t_data*, int, float);
+
+	f[0][0] = &tra_sph;
+	f[0][1] = NULL;
+	f[0][2] = &red_sph;
+	f[1][0] = &tra_pla;
+	f[1][1] = &rot_pla;
+	f[1][2] = NULL;
+	f[2][0] = &tra_cyl;
+	f[2][1] = &rot_cyl;
+	f[2][2] = &red_cyl;
+	f[3][0] = &tra_lig;
+	f[3][1] = NULL;
+	f[3][2] = NULL;
+	f[4][0] = &tra_cam;
+	f[4][1] = &rot_cam;
+	f[4][2] = NULL;
+	f[sel->obj][sel->action](data, sel->obj_id, sel->magnitude);
+}
+
 void	step0(t_data *data)
 {
+	mlx_put_image_to_window(data->mlx, data->win, data->cmd_backg.img, 80, 80);
 	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET, 0xFFFFFFFF, "SELECT an object:");
 	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE, 0xFFFFFFFF, "S: sphere");
 	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 2, 0xFFFFFFFF, "P: plane");
@@ -26,6 +49,7 @@ void	step1(t_data *data, t_select *sel)
 {
 	char	*obj_id;
 
+	mlx_put_image_to_window(data->mlx, data->win, data->cmd_backg.img, 80, 80);
 	obj_id = ft_itoa(sel->obj_id);
 	mlx_string_put(data->mlx, data->win, 50, 50, 0xFFFFFFFF, \
 		"SELECT the object number (press ENTER to confirm):\n\
@@ -37,6 +61,7 @@ void	step1(t_data *data, t_select *sel)
 
 void	step2(t_data *data, t_select *sel)
 {
+	mlx_put_image_to_window(data->mlx, data->win, data->cmd_backg.img, 80, 80);
 	mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, \
 		"SELECT an action:\n\
 		T: translation\n\
@@ -50,6 +75,7 @@ void	step2(t_data *data, t_select *sel)
 
 void	step3(t_data *data, t_select *sel)
 {
+	mlx_put_image_to_window(data->mlx, data->win, data->cmd_backg.img, 80, 80);
 	if (sel->action != RED)
 	{
 		mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, \
@@ -73,6 +99,7 @@ void	step4(t_data *data, t_select *sel)
 {
 	char	*magnitude;
 
+	mlx_put_image_to_window(data->mlx, data->win, data->cmd_backg.img, 80, 80);
 	magnitude = ft_itoa(sel->magnitude);
 	mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, \
 		"SELECT a magnitude (press ENTER to confirm):\n\
@@ -177,13 +204,14 @@ void	handle_step3(t_data *data, t_select *sel, int kn)
 void	handle_step4(t_data *data, t_select *sel, int kn)
 {
 	if (kn == 65363/*right arrow*/)
-		sel->magnitude++;
+		sel->magnitude += 1;
 	else if (kn == 65361/*left arrow*/ || (kn == 24 && sel->magnitude > 0 && sel->action == RED))
-		sel->magnitude--;
+		sel->magnitude -= 1;
 	else if (kn == 65293 /*enter*/)
 	{
 		sel->step = 0;
-		step0(data);
+		data->done = false;
+		dispatch(data, sel);
 	}
 	else if (ft_toupper(kn) == 'B')
 	{

@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/27 17:26:58 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/27 22:25:23 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,6 +203,7 @@ typedef struct s_select
 typedef struct s_data
 {
 	t_img		img;
+	t_img		cmd_backg;
 	t_scene		*scene;
 	void		*mlx;
 	void		*win;
@@ -246,6 +247,17 @@ t_point	norm_cylinder(t_data *data, t_ray *ray, t_point collision);
 t_point	norm_disk(t_data *data, t_ray *ray, t_point collision);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 float	get_shadow(t_data *data, t_point p1, t_point p2, float tlight);
+void	init_backg(t_data *data);
+void	tra_sph(t_data *data, t_select *sel);
+void	red_sph(t_data *data, t_select *sel);
+void	tra_pla(t_data *data, t_select *sel);
+void	rot_pla(t_data *data, t_select *sel);
+void	tra_cyl(t_data *data, t_select *sel);
+void	rot_cyl(t_data *data, t_select *sel);
+void	red_cyl(t_data *data, t_select *sel);
+void	tra_lig(t_data *data, t_select *sel);
+void	tra_cam(t_data *data, t_select *sel);
+void	rot_cam(t_data *data, t_select *sel);
 
 //INTERSECTION
 
