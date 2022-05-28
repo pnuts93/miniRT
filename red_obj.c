@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   plane.c                                            :+:      :+:    :+:   */
+/*   red_obj.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/27 13:12:27 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/28 21:06:20 by pnuti            ###   ########.fr       */
+/*   Created: 2022/05/28 21:23:36 by pnuti             #+#    #+#             */
+/*   Updated: 2022/05/28 21:35:59 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mini_rt.h"
+#include "mini_rt.h"
 
-float	inter_plane(t_pla *pla, t_ray *ray)
+void	red_sph(t_data *data, int obj_id, int dimension, float magnitude)
 {
-	float	t;
-	float	den;
+	if (dimension == 'd')
+		data->scene->sph[obj_id]->d = magnitude;
+}
 
-	den = dot(ray->p2, pla->nov);
-	if (isequal(den, 0))
-		return (-1);
-	t = dot(pla->nov, diff_vectors(pla->c, ray->p1)) / den;
-	if (t < 0 || isequal(t, 0))
-		return (-1);
-	return (t);
+void	red_cyl(t_data *data, int obj_id, int dimension, float magnitude)
+{
+	if (dimension == 'd')
+		data->scene->cyl[obj_id]->dia = magnitude;
+	else if (dimension = 'h')
+		data->scene->cyl[obj_id]->hei = magnitude;
 }

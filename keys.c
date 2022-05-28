@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 10:47:11 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/27 22:20:03 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/28 21:34:34 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	dispatch(t_data *data, t_select *sel)
 {
-	void	(*f[5][3])(t_data*, int, float);
+	void	(*f[5][3])(t_data*, int, int, float);
 
 	f[0][0] = &tra_sph;
 	f[0][1] = NULL;
@@ -31,7 +31,7 @@ void	dispatch(t_data *data, t_select *sel)
 	f[4][0] = &tra_cam;
 	f[4][1] = &rot_cam;
 	f[4][2] = NULL;
-	f[sel->obj][sel->action](data, sel->obj_id, sel->magnitude);
+	f[sel->obj][sel->action](data, sel->obj_id, sel->dimension, sel->magnitude);
 }
 
 void	step0(t_data *data)
@@ -86,7 +86,7 @@ void	step3(t_data *data, t_select *sel)
 	{
 		mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, \
 			"SELECT a dimension:\n\
-			R: ray");
+			D: diameter");
 		if (sel->obj == CYLINDER)
 		{
 			mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, "H: height");
@@ -192,8 +192,8 @@ void	handle_step3(t_data *data, t_select *sel, int kn)
 	}
 	else
 	{
-		if (ft_toupper(kn) == 'R')
-			sel->dimension = 'r';
+		if (ft_toupper(kn) == 'D')
+			sel->dimension = 'd';
 		else if (ft_toupper(kn) == 'H')
 			sel->dimension = 'h';
 	}

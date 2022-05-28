@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkeskint <bkeskint@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 09:38:04 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/27 17:09:30 by bkeskint         ###   ########.fr       */
+/*   Updated: 2022/05/28 21:17:29 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	zrot_matrix(float matrix[3][3], float radians)
 	matrix[2][2] = 1;
 }
 
-t_point	*rotate_axis(float radians, t_point v, char axis)
+t_point	rotate_axis(float radians, t_point v, char axis)
 {
 	float		matrix[3][3];
 

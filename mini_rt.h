@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/27 22:25:23 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/05/28 21:17:44 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,16 +248,16 @@ t_point	norm_disk(t_data *data, t_ray *ray, t_point collision);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 float	get_shadow(t_data *data, t_point p1, t_point p2, float tlight);
 void	init_backg(t_data *data);
-void	tra_sph(t_data *data, t_select *sel);
-void	red_sph(t_data *data, t_select *sel);
-void	tra_pla(t_data *data, t_select *sel);
-void	rot_pla(t_data *data, t_select *sel);
-void	tra_cyl(t_data *data, t_select *sel);
-void	rot_cyl(t_data *data, t_select *sel);
-void	red_cyl(t_data *data, t_select *sel);
-void	tra_lig(t_data *data, t_select *sel);
-void	tra_cam(t_data *data, t_select *sel);
-void	rot_cam(t_data *data, t_select *sel);
+void	tra_sph(t_data *data, int obj_id, int dimension, float magnitude);
+void	red_sph(t_data *data, int obj_id, int dimension, float magnitude);
+void	tra_pla(t_data *data, int obj_id, int dimension, float magnitude);
+void	rot_pla(t_data *data, int obj_id, int dimension, float magnitude);
+void	tra_cyl(t_data *data, int obj_id, int dimension, float magnitude);
+void	rot_cyl(t_data *data, int obj_id, int dimension, float magnitude);
+void	red_cyl(t_data *data, int obj_id, int dimension, float magnitude);
+void	tra_lig(t_data *data, int obj_id, int dimension, float magnitude);
+void	tra_cam(t_data *data, int obj_id, int dimension, float magnitude);
+void	rot_cam(t_data *data, int obj_id, int dimension, float magnitude);
 
 //INTERSECTION
 
@@ -274,8 +274,8 @@ t_point	sum_vectors(t_point a, t_point b);
 t_point	diff_vectors(t_point a, t_point b);
 float	dot(t_point v1, t_point v2);
 t_point	cross(t_point a, t_point b);
-t_point	*multiply_matrix(float matrix[3][3], t_point v);
-t_point	*rotate_axis(float radians, t_point v, char axis);
+t_point	multiply_matrix(float matrix[3][3], t_point v);
+t_point	rotate_axis(float radians, t_point v, char axis);
 t_point	mult_vect_scal(t_point v, float s);
 t_point	rotate_quaternion(t_point v, t_point u, float radians);
 

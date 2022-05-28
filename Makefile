@@ -6,7 +6,7 @@
 #    By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/27 11:54:55 by bkeskint          #+#    #+#              #
-#    Updated: 2022/05/27 18:05:24 by pnuti            ###   ########.fr        #
+#    Updated: 2022/05/28 21:13:05 by pnuti            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ SRC_GEN		=	main.c init.c loop_hooks.c purge.c render.c utils.c				\
 			parser.c parser2.c parser3.c vectors.c vectors2.c rotation.c	\
 			rotation2.c	trigonometry.c generic_math.c rot_quater.c			\
 			scene_translate.c scene_rotate.c get_rgb.c	get_rgb_shapes.c	\
-			get_shape.c get_normal.c get_shadow.c init2.c keys.c
+			get_shape.c get_normal.c get_shadow.c init2.c keys.c tra_obj.c	\
+			rot_obj.c red_obj.c
 OBJ		= $(SRC:.c=.o)
 
 DIR_INTER = intersect
