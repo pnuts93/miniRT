@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_hooks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkeskint <bkeskint@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: pnuti <pnuti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:12:05 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/27 17:08:21 by bkeskint         ###   ########.fr       */
+/*   Updated: 2022/06/05 15:03:52 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	init_sel(t_select *sel)
 	sel->obj = -1;
 	sel->obj_id = 0;
 	sel->dimension = 0;
-	sel->magnitude = -1;
+	sel->magnitude = 0;
 }
 
 static int	handle_key(int kn, t_data *data)

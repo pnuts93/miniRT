@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkeskint <bkeskint@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: pnuti <pnuti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 10:47:11 by pnuti             #+#    #+#             */
-/*   Updated: 2022/06/05 14:26:34 by bkeskint         ###   ########.fr       */
+/*   Updated: 2022/06/05 15:06:09 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,11 @@ void	step1(t_data *data, t_select *sel)
 
 	mlx_put_image_to_window(data->mlx, data->win, data->cmd_backg.img, 80, 80);
 	obj_id = ft_itoa(sel->obj_id);
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET, 0xFFFFFFFF, "SELECT the object number (press ENTER to confirm):");
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE, 0xFFFFFFFF, "<- | ->");
-	mlx_string_put(data->mlx, data->win, OFFSET + 50, OFFSET + LINE, 0xFFFFFFFF, obj_id);
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 2, 0xFFFFFFFF, "B: back");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET, 0xFFFFFFFF, "SELECT the object number:");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE, 0xFFFFFFFF, "(press ENTER to confirm)");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 2, 0xFFFFFFFF, "<- | ->");
+	mlx_string_put(data->mlx, data->win, OFFSET + 50, OFFSET + LINE * 2, 0xFFFFFFFF, obj_id);
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 3, 0xFFFFFFFF, "B: back");
 	free(obj_id);
 }
 
@@ -83,10 +84,10 @@ void	step3(t_data *data, t_select *sel)
 		mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE, 0xFFFFFFFF, "D: diameter");
 		if (sel->obj == CYLINDER)
 		{
-			mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, "H: height");
+			mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 2, 0xFFFFFFFF, "H: height");
 		}
 	}
-	mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, "B: back");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 3, 0xFFFFFFFF, "B: back");
 }
 
 void	step4(t_data *data, t_select *sel)
@@ -95,10 +96,11 @@ void	step4(t_data *data, t_select *sel)
 
 	mlx_put_image_to_window(data->mlx, data->win, data->cmd_backg.img, 80, 80);
 	magnitude = ft_itoa(sel->magnitude);
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET, 0xFFFFFFFF, "SELECT A magnitude (press ENTER to confirm):");
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE, 0xFFFFFFFF, " ← | → ");
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 2, 0xFFFFFFFF, "B: back");
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 3, 0xFFFFFFFF, magnitude);
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET, 0xFFFFFFFF, "SELECT A magnitude:");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE, 0xFFFFFFFF, "(press ENTER to confirm)");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 2, 0xFFFFFFFF, " <- | -> ");
+	mlx_string_put(data->mlx, data->win, OFFSET + 50, OFFSET + LINE * 2, 0xFFFFFFFF, magnitude);
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 3, 0xFFFFFFFF, "B: back");
 	free(magnitude);
 }
 
@@ -144,6 +146,8 @@ void	handle_step1(t_data *data, t_select *sel, int kn)
 		sel->step--;
 		step0(data);
 	}
+	if (kn == 65363 || kn == 65361)
+		step1(data, sel);
 }
 
 void	handle_step2(t_data *data, t_select *sel, int kn)
@@ -162,6 +166,7 @@ void	handle_step2(t_data *data, t_select *sel, int kn)
 	}
 	else
 		return ;
+	sel->step++;
 	step3(data, sel);
 }
 
@@ -191,14 +196,17 @@ void	handle_step3(t_data *data, t_select *sel, int kn)
 			sel->dimension = 'h';
 	}
 	if (sel->dimension)
+	{
+		sel->step++;
 		step4(data, sel);
+	}
 }
 
 void	handle_step4(t_data *data, t_select *sel, int kn)
 {
 	if (kn == 65363/*right arrow*/)
 		sel->magnitude += 1;
-	else if (kn == 65361/*left arrow*/ || (kn == 24 && sel->magnitude > 0 && sel->action == RED))
+	else if (kn == 65361/*left arrow*/ || (kn == 65361 && sel->magnitude > 0 && sel->action == RED))
 		sel->magnitude -= 1;
 	else if (kn == 65293 /*enter*/)
 	{
@@ -211,4 +219,6 @@ void	handle_step4(t_data *data, t_select *sel, int kn)
 		sel->step--;
 		step3(data, sel);
 	}
+	if (kn == 65363 || kn == 65361)
+		step4(data, sel);
 }
