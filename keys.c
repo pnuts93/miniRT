@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: pnuti <pnuti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 10:47:11 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/28 21:34:34 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/06/05 14:18:06 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,26 +51,22 @@ void	step1(t_data *data, t_select *sel)
 
 	mlx_put_image_to_window(data->mlx, data->win, data->cmd_backg.img, 80, 80);
 	obj_id = ft_itoa(sel->obj_id);
-	mlx_string_put(data->mlx, data->win, 50, 50, 0xFFFFFFFF, \
-		"SELECT the object number (press ENTER to confirm):\n\
-		← | →\n\n\
-		B: back");
-	mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, obj_id);
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET, 0xFFFFFFFF, "SELECT the object number (press ENTER to confirm):");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE, 0xFFFFFFFF, "<- | ->");
+	mlx_string_put(data->mlx, data->win, OFFSET + 50, OFFSET + LINE, 0xFFFFFFFF, obj_id);
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 2, 0xFFFFFFFF, "B: back");
 	free(obj_id);
 }
 
 void	step2(t_data *data, t_select *sel)
 {
 	mlx_put_image_to_window(data->mlx, data->win, data->cmd_backg.img, 80, 80);
-	mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, \
-		"SELECT an action:\n\
-		T: translation\n\
-		R: rotation\n");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET, 0xFFFFFFFF, "SELECT an action:");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE, 0xFFFFFFFF, "T: translation");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 2, 0xFFFFFFFF, "R: rotation");
 	if (sel->obj == SPHERE || sel->obj == CYLINDER)
-	{
-		mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, "D: redimension");
-	}
-	mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, "B: back");
+		mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 3, 0xFFFFFFFF, "D: redimension");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 4, 0xFFFFFFFF, "B: back");
 }
 
 void	step3(t_data *data, t_select *sel)
