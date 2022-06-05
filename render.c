@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 10:36:04 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/26 12:24:47 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/06/05 22:02:24 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	project(t_data *data, t_ray ray, int i, int j)
 	if (ray.t > 0)
 		my_mlx_pixel_put(&data->img, j, data->screen.h - i, \
 		get_pixel(data, &ray, f[ray.shape_sel[0]]));
+	else
+		my_mlx_pixel_put(&data->img, j, data->screen.h - i, 0xFF000000);
 }
 
 void	render(t_data *data)

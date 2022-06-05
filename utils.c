@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkeskint <bkeskint@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 11:17:43 by lhorefto          #+#    #+#             */
-/*   Updated: 2022/06/05 16:07:51 by bkeskint         ###   ########.fr       */
+/*   Updated: 2022/06/05 16:57:49 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ bool	check_ovector(char **ov)
 
 bool	berror(const char	*msg)
 {
-	perror(msg);
+	ft_putendl_fd(msg, 2);
 	return (false);
 }
 

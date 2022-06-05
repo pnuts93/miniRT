@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnuti <pnuti@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 16:00:13 by bkeskint          #+#    #+#             */
-/*   Updated: 2022/06/05 16:26:53 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/06/05 21:54:40 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void	handle_step1(t_data *data, t_select *sel, int kn)
 	shape_sel[2] = data->scene->ns.ny;
 	shape_sel[3] = data->scene->ns.nl;
 	shape_sel[4] = data->scene->ns.nc;
-	if (kn == 65363)
+	if (kn == 65363 && shape_sel[sel->obj] > 0)
 		sel->obj_id = (sel->obj_id + 1) % shape_sel[sel->obj];
-	else if (kn == 65361 && sel->obj_id > 0)
+	else if (kn == 65361 && sel->obj_id > 0 && shape_sel[sel->obj] > 0)
 		sel->obj_id = (sel->obj_id - 1) % shape_sel[sel->obj];
-	else if (kn == 65293)
+	else if (kn == 65293 && shape_sel[sel->obj] > 0)
 	{
 		sel->step++;
 		step2(data, sel);

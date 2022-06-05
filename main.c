@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:28:16 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/09 08:02:29 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/06/05 17:13:07 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	main(int argc, char *argv[])
 {
 	t_data	data;
 
-	if (argc != 2 || ft_strncmp(ft_strchr(argv[1], '.'), ".rt", 4))
+	if (argc != 2 || !ft_strchr(argv[1], '.') \
+		|| ft_strncmp(ft_strchr(argv[1], '.'), ".rt", 4))
 		return (!berror("Error\nwrong number of arguments or file extension!"));
 	data.scene = reader(argv[1], data.scene);
 	if (data.scene->error)
