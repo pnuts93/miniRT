@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: bkeskint <bkeskint@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/28 21:17:44 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/06/05 16:06:42 by bkeskint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,7 +286,12 @@ float	get_angle_xy(t_point a);
 
 //HOOKS
 
+void	dispatch(t_data *data, t_select *sel);
 void	step0(t_data *data);
+void	step1(t_data *data, t_select *sel);
+void	step2(t_data *data, t_select *sel);
+void	step3(t_data *data, t_select *sel);
+void	step4(t_data *data, t_select *sel);
 void	handle_step0(t_data *data, t_select *sel, int kn);
 void	handle_step1(t_data *data, t_select *sel, int kn);
 void	handle_step2(t_data *data, t_select *sel, int kn);

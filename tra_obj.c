@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tra_obj.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: bkeskint <bkeskint@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 21:05:30 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/28 21:31:22 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/06/05 15:51:04 by bkeskint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	tra_pla(t_data *data, int obj_id, int dimension, float magnitude)
 	else if (dimension == 'z')
 		data->scene->pla[obj_id]->c.z += magnitude;
 }
-
 
 void	tra_cyl(t_data *data, int obj_id, int dimension, float magnitude)
 {

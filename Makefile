@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pnuti <pnuti@student.42.fr>                +#+  +:+       +#+         #
+#    By: bkeskint <bkeskint@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/27 11:54:55 by bkeskint          #+#    #+#              #
-#    Updated: 2022/06/05 13:39:41 by pnuti            ###   ########.fr        #
+#    Updated: 2022/06/05 16:08:35 by bkeskint         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRC_GEN		=	main.c init.c loop_hooks.c purge.c render.c utils.c				\
 			rotation2.c	trigonometry.c generic_math.c rot_quater.c			\
 			scene_translate.c scene_rotate.c get_rgb.c	get_rgb_shapes.c	\
 			get_shape.c get_normal.c get_shadow.c init2.c keys.c tra_obj.c	\
-			rot_obj.c red_obj.c
+			rot_obj.c red_obj.c keys2.c utils2.c
 OBJ		= $(SRC:.c=.o)
 
 DIR_INTER = intersect
