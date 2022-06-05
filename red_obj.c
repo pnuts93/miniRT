@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   red_obj.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: bkeskint <bkeskint@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 21:23:36 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/28 21:35:59 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/06/05 15:58:47 by bkeskint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ void	red_cyl(t_data *data, int obj_id, int dimension, float magnitude)
 {
 	if (dimension == 'd')
 		data->scene->cyl[obj_id]->dia = magnitude;
-	else if (dimension = 'h')
+	else if (dimension == 'h')
 		data->scene->cyl[obj_id]->hei = magnitude;
 }

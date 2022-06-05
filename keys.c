@@ -3,46 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnuti <pnuti@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bkeskint <bkeskint@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 10:47:11 by pnuti             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/06/05 15:23:36 by pnuti            ###   ########.fr       */
+=======
+/*   Updated: 2022/06/05 16:07:05 by bkeskint         ###   ########.fr       */
+>>>>>>> e021238e92b1a2b13e006d6b481c88a8f4eebfb9
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-void	dispatch(t_data *data, t_select *sel)
-{
-	void	(*f[5][3])(t_data*, int, int, float);
-
-	f[0][0] = &tra_sph;
-	f[0][1] = NULL;
-	f[0][2] = &red_sph;
-	f[1][0] = &tra_pla;
-	f[1][1] = &rot_pla;
-	f[1][2] = NULL;
-	f[2][0] = &tra_cyl;
-	f[2][1] = &rot_cyl;
-	f[2][2] = &red_cyl;
-	f[3][0] = &tra_lig;
-	f[3][1] = NULL;
-	f[3][2] = NULL;
-	f[4][0] = &tra_cam;
-	f[4][1] = &rot_cam;
-	f[4][2] = NULL;
-	f[sel->obj][sel->action](data, sel->obj_id, sel->dimension, sel->magnitude);
-}
+/*
+65363 ->
+65361 <-
+65293 Enter
+*/
 
 void	step0(t_data *data)
 {
 	mlx_put_image_to_window(data->mlx, data->win, data->cmd_backg.img, 80, 80);
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET, 0xFFFFFFFF, "SELECT an object:");
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE, 0xFFFFFFFF, "S: sphere");
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 2, 0xFFFFFFFF, "P: plane");
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 3, 0xFFFFFFFF, "Y: cylinder");
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 4, 0xFFFFFFFF, "L: light");
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 5, 0xFFFFFFFF, "C: camera");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET, 0xFFFFFFFF,
+		"SELECT an object:");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE, 0xFFFFFFFF,
+		"S: sphere");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 2, 0xFFFFFFFF,
+		"P: plane");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 3, 0xFFFFFFFF,
+		"Y: cylinder");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 4, 0xFFFFFFFF,
+		"L: light");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 5, 0xFFFFFFFF,
+		"C: camera");
 }
 
 void	step1(t_data *data, t_select *sel)
@@ -51,23 +45,33 @@ void	step1(t_data *data, t_select *sel)
 
 	mlx_put_image_to_window(data->mlx, data->win, data->cmd_backg.img, 80, 80);
 	obj_id = ft_itoa(sel->obj_id);
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET, 0xFFFFFFFF, "SELECT the object number:");
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE, 0xFFFFFFFF, "(press ENTER to confirm)");
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 2, 0xFFFFFFFF, "<- | ->");
-	mlx_string_put(data->mlx, data->win, OFFSET + 50, OFFSET + LINE * 2, 0xFFFFFFFF, obj_id);
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 3, 0xFFFFFFFF, "B: back");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET,
+		0xFFFFFFFF, "SELECT the object number:");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE,
+		0xFFFFFFFF, "(press ENTER to confirm)");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 2,
+		0xFFFFFFFF, "<- | ->");
+	mlx_string_put(data->mlx, data->win, OFFSET + 50, OFFSET + LINE * 2,
+		0xFFFFFFFF, obj_id);
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 3,
+		0xFFFFFFFF, "B: back");
 	free(obj_id);
 }
 
 void	step2(t_data *data, t_select *sel)
 {
 	mlx_put_image_to_window(data->mlx, data->win, data->cmd_backg.img, 80, 80);
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET, 0xFFFFFFFF, "SELECT an action:");
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE, 0xFFFFFFFF, "T: translation");
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 2, 0xFFFFFFFF, "R: rotation");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET, 0xFFFFFFFF,
+		"SELECT an action:");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE,
+		0xFFFFFFFF, "T: translation");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 2,
+		0xFFFFFFFF, "R: rotation");
 	if (sel->obj == SPHERE || sel->obj == CYLINDER)
-		mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 3, 0xFFFFFFFF, "D: redimension");
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 4, 0xFFFFFFFF, "B: back");
+		mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 3,
+			0xFFFFFFFF, "D: redimension");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 4,
+		0xFFFFFFFF, "B: back");
 }
 
 void	step3(t_data *data, t_select *sel)
@@ -75,19 +79,25 @@ void	step3(t_data *data, t_select *sel)
 	mlx_put_image_to_window(data->mlx, data->win, data->cmd_backg.img, 80, 80);
 	if (sel->action != RED)
 	{
-		mlx_string_put(data->mlx, data->win, OFFSET, OFFSET, 0xFFFFFFFF, "SELECT an axis:");
-		mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE, 0xFFFFFFFF, "[ x | y | z ]");
+		mlx_string_put(data->mlx, data->win, OFFSET, OFFSET,
+			0xFFFFFFFF, "SELECT an axis:");
+		mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE,
+			0xFFFFFFFF, "[ x | y | z ]");
 	}
 	else
 	{
-		mlx_string_put(data->mlx, data->win, OFFSET, OFFSET, 0xFFFFFFFF, "SELECT a dimension:");
-		mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE, 0xFFFFFFFF, "D: diameter");
+		mlx_string_put(data->mlx, data->win, OFFSET, OFFSET,
+			0xFFFFFFFF, "SELECT a dimension:");
+		mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE,
+			0xFFFFFFFF, "D: diameter");
 		if (sel->obj == CYLINDER)
 		{
-			mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 2, 0xFFFFFFFF, "H: height");
+			mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 2,
+				0xFFFFFFFF, "H: height");
 		}
 	}
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 3, 0xFFFFFFFF, "B: back");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 3,
+		0xFFFFFFFF, "B: back");
 }
 
 void	step4(t_data *data, t_select *sel)
@@ -96,13 +106,19 @@ void	step4(t_data *data, t_select *sel)
 
 	mlx_put_image_to_window(data->mlx, data->win, data->cmd_backg.img, 80, 80);
 	magnitude = ft_itoa(sel->magnitude);
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET, 0xFFFFFFFF, "SELECT A magnitude:");
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE, 0xFFFFFFFF, "(press ENTER to confirm)");
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 2, 0xFFFFFFFF, " <- | -> ");
-	mlx_string_put(data->mlx, data->win, OFFSET + 50, OFFSET + LINE * 2, 0xFFFFFFFF, magnitude);
-	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 3, 0xFFFFFFFF, "B: back");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET,
+		0xFFFFFFFF, "SELECT A magnitude:");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE,
+		0xFFFFFFFF, "(press ENTER to confirm)");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 2,
+		0xFFFFFFFF, " <- | -> ");
+	mlx_string_put(data->mlx, data->win, OFFSET + 50, OFFSET + LINE * 2,
+		0xFFFFFFFF, magnitude);
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 3,
+		0xFFFFFFFF, "B: back");
 	free(magnitude);
 }
+<<<<<<< HEAD
 
 void	handle_step0(t_data *data, t_select *sel, int kn)
 {
@@ -222,3 +238,5 @@ void	handle_step4(t_data *data, t_select *sel, int kn)
 	if (kn == 65363 || kn == 65361)
 		step4(data, sel);
 }
+=======
+>>>>>>> e021238e92b1a2b13e006d6b481c88a8f4eebfb9
