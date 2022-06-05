@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 10:47:11 by pnuti             #+#    #+#             */
-/*   Updated: 2022/06/05 15:06:09 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/06/05 15:23:36 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,11 +204,11 @@ void	handle_step3(t_data *data, t_select *sel, int kn)
 
 void	handle_step4(t_data *data, t_select *sel, int kn)
 {
-	if (kn == 65363/*right arrow*/)
+	if (kn == 65363)
 		sel->magnitude += 1;
-	else if (kn == 65361/*left arrow*/ || (kn == 65361 && sel->magnitude > 0 && sel->action == RED))
+	else if ((kn == 65361 && sel->action != RED) || (kn == 65361 && sel->magnitude > 0 && sel->action == RED))
 		sel->magnitude -= 1;
-	else if (kn == 65293 /*enter*/)
+	else if (kn == 65293)
 	{
 		sel->step = 0;
 		data->done = false;
