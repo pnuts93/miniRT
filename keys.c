@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
+/*   By: bkeskint <bkeskint@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 10:47:11 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/28 21:34:34 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/06/05 14:21:14 by bkeskint         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,13 @@ void	step3(t_data *data, t_select *sel)
 	mlx_put_image_to_window(data->mlx, data->win, data->cmd_backg.img, 80, 80);
 	if (sel->action != RED)
 	{
-		mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, \
-			"SELECT an axis:\n\
-			[ x | y | z ]");
+		mlx_string_put(data->mlx, data->win, OFFSET, OFFSET, 0xFFFFFFFF, "SELECT an axis:");
+		mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE, 0xFFFFFFFF, "[ x | y | z ]");
 	}
 	else
 	{
-		mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, \
-			"SELECT a dimension:\n\
-			D: diameter");
+		mlx_string_put(data->mlx, data->win, OFFSET, OFFSET, 0xFFFFFFFF, "SELECT a dimension:");
+		mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE, 0xFFFFFFFF, "D: diameter");
 		if (sel->obj == CYLINDER)
 		{
 			mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, "H: height");
@@ -101,11 +99,10 @@ void	step4(t_data *data, t_select *sel)
 
 	mlx_put_image_to_window(data->mlx, data->win, data->cmd_backg.img, 80, 80);
 	magnitude = ft_itoa(sel->magnitude);
-	mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, \
-		"SELECT a magnitude (press ENTER to confirm):\n\
-		← | →\n\n\
-		B: back");
-	mlx_string_put(data->mlx, data->win, 0, 0, 0xFFFFFFFF, magnitude);
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET, 0xFFFFFFFF, "SELECT A magnitude (press ENTER to confirm):");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE, 0xFFFFFFFF, " ← | → ");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 2, 0xFFFFFFFF, "B: back");
+	mlx_string_put(data->mlx, data->win, OFFSET, OFFSET + LINE * 3, 0xFFFFFFFF, magnitude);
 	free(magnitude);
 }
 
