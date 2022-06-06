@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 09:38:04 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/28 21:17:29 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/06/06 10:18:52 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	zrot_matrix(float matrix[3][3], float radians)
 
 t_point	rotate_axis(float radians, t_point v, char axis)
 {
-	float		matrix[3][3];
+	float	matrix[3][3];
 
 	matrix_zero(matrix);
 	if (axis == 'x')

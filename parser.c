@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 09:49:20 by lhorefto          #+#    #+#             */
-/*   Updated: 2022/06/05 17:04:43 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/06/06 14:59:56 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ static t_ns	count_elements(char **lines)
 	if (ns.na != 1 || ns.nl != 1 || ns.nc != 1)
 	{
 		free_2darr(lines);
-		ft_putendl_fd("Error\nwrong number of cameras/(ambient)lights in the file!", 2);
+		ft_putendl_fd("Error\nwrong number of cameras/(ambient)lights \
+			in the file!", 2);
 		exit(1);
 	}
 	return (ns);

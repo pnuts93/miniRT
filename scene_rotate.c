@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:22:15 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/27 17:24:59 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/06/06 12:18:05 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,10 @@ void	rotate_scene(t_scene *scene)
 
 	set_p(&z, 0, 0, 1);
 	if (!scene->camera->nov_i.z)
+	{
+		scene->camera->theta = get_angle_xy(scene->camera->nov_i);
 		return ;
+	}
 	if (!scene->camera->nov_i.x && !scene->camera->nov_i.y)
 		set_p(&u, 0, 1, 0);
 	else

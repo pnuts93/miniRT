@@ -3,23 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkeskint <bkeskint@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/06/05 16:06:42 by bkeskint         ###   ########.fr       */
+/*   Updated: 2022/06/06 10:16:56 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINI_RT_H
 # define MINI_RT_H
 
-# define PI 3.14159
+# define PI 3.141592
 # define OFFSET 100
 # define LINE 20
 
 # include "libft/libft.h"
 # include "mlx/mlx.h"
-//# include "mlxmac/mlx.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
@@ -221,7 +220,7 @@ void	render(t_data *data);
 t_scene	*reader(char *path, t_scene *scene);
 bool	check_rgb(char **rgb);
 bool	check_ovector(char **ov);
-bool	berror(const char	*msg);
+bool	berror(char *msg);
 void	free_2darr(char	**str);
 bool	get_camera(char **line, t_cam *camera);
 bool	get_light(char **line, t_light *light);

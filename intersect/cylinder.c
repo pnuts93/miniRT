@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:51:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/28 21:05:50 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/06/06 09:58:15 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static float	check_disks(t_cyl *cyl, t_ray *ray, int n_disk)
 	float	t;
 
 	den = dot(ray->p2, cyl->nov);
-	if (islessgreater(den, 0))
+	if (!isequal(den, 0))
 	{
 		t = dot(cyl->nov, diff_vectors(sum_vectors(cyl->c, \
 			mult_vect_scal(cyl->nov, cyl->hei * n_disk)), ray->p1)) / den;
