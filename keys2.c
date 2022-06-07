@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkeskint <bkeskint@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: pnuti <pnuti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 16:00:13 by bkeskint          #+#    #+#             */
-/*   Updated: 2022/06/05 16:07:10 by bkeskint         ###   ########.fr       */
+/*   Updated: 2022/06/05 16:26:53 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,22 +88,11 @@ void	handle_step3(t_data *data, t_select *sel, int kn)
 		step2(data, sel);
 		return ;
 	}
-	if (sel->action != RED)
-	{
-		if (ft_toupper(kn) == 'X')
-			sel->dimension = 'x';
-		else if (ft_toupper(kn) == 'Y')
-			sel->dimension = 'y';
-		else if (ft_toupper(kn) == 'Z')
-			sel->dimension = 'z';
-	}
-	else
-	{
-		if (ft_toupper(kn) == 'D')
-			sel->dimension = 'd';
-		else if (ft_toupper(kn) == 'H')
-			sel->dimension = 'h';
-	}
+	if (sel->action != RED && (ft_toupper(kn) == 'X' || ft_toupper(kn) == 'Y' \
+		|| ft_toupper(kn) == 'Z'))
+		sel->dimension = ft_tolower(kn);
+	else if (ft_toupper(kn) == 'D' || ft_toupper(kn) == 'H')
+		sel->dimension = ft_tolower(kn);
 	if (sel->dimension)
 	{
 		sel->step++;
