@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/06/06 15:10:43 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/06/16 10:15:12 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,6 +224,7 @@ t_point	norm_disk(t_data *data, t_ray *ray, t_point collision);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 float	get_shadow(t_data *data, t_point p1, t_point p2, float tlight);
 void	init_backg(t_data *data);
+void	init_sel(t_select *sel);
 void	tra_sph(t_data *data, int obj_id, int dimension, float magnitude);
 void	red_sph(t_data *data, int obj_id, int dimension, float magnitude);
 void	tra_pla(t_data *data, int obj_id, int dimension, float magnitude);
