@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   loop_hooks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnuti <pnuti@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:12:05 by pnuti             #+#    #+#             */
-/*   Updated: 2022/06/05 15:03:52 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/06/16 10:16:50 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-static void	init_sel(t_select *sel)
+void	init_sel(t_select *sel)
 {
 	sel->step = 0;
 	sel->obj = -1;
@@ -24,7 +24,6 @@ static void	init_sel(t_select *sel)
 static int	handle_key(int kn, t_data *data)
 {
 	static t_select	sel;
-	static int		init;
 	void			(*f[5])(t_data*, t_select*, int);
 
 	f[0] = &handle_step0;
@@ -32,11 +31,6 @@ static int	handle_key(int kn, t_data *data)
 	f[2] = &handle_step2;
 	f[3] = &handle_step3;
 	f[4] = &handle_step4;
-	if (!init)
-	{
-		init_sel(&sel);
-		init = 1;
-	}
 	if (kn == 65307)
 		purge(data);
 	else

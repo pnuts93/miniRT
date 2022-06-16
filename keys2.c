@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 16:00:13 by bkeskint          #+#    #+#             */
-/*   Updated: 2022/06/05 21:54:40 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/06/16 10:18:21 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	handle_step0(t_data *data, t_select *sel, int kn)
 {
+	init_sel(sel);
 	if (ft_strchr("SPYLC", ft_toupper(kn)))
 	{
 		if (ft_toupper(kn) == 'S')
