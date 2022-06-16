@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 18:59:26 by pnuti             #+#    #+#             */
-/*   Updated: 2022/05/09 09:14:26 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/06/06 10:25:52 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,10 @@ void	normalise(t_point *v)
 	v->x /= magnitude;
 	v->y /= magnitude;
 	v->z /= magnitude;
+	if (isequal(v->x, 0))
+		v->x = 0;
+	if (isequal(v->y, 0))
+		v->y = 0;
+	if (isequal(v->z, 0))
+		v->z = 0;
 }

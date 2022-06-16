@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 09:49:20 by lhorefto          #+#    #+#             */
-/*   Updated: 2022/05/27 17:46:06 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/06/06 14:59:56 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ static char	*raw(char *path)
 	char	buff[10000];
 
 	fd = open(path, O_RDONLY);
+	if (fd < 0)
+	{
+		ft_putendl_fd("Error\nNo such file or directory!", 2);
+		exit(1);
+	}
 	i = read(fd, buff, 10000);
 	if (i < 0)
 		return (ft_strdup(""));
@@ -57,8 +62,9 @@ static t_ns	count_elements(char **lines)
 	if (ns.na != 1 || ns.nl != 1 || ns.nc != 1)
 	{
 		free_2darr(lines);
-		perror("Error\nwrong number of cameras/(ambient)lights in the file!");
-		exit(0);
+		ft_putendl_fd("Error\nwrong number of cameras/(ambient)lights \
+			in the file!", 2);
+		exit(1);
 	}
 	return (ns);
 }

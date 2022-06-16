@@ -3,23 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkeskint <bkeskint@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:08:44 by pnuti             #+#    #+#             */
-/*   Updated: 2022/06/05 16:06:42 by bkeskint         ###   ########.fr       */
+/*   Updated: 2022/06/06 15:10:43 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINI_RT_H
 # define MINI_RT_H
 
-# define PI 3.14159
+# define PI 3.141592
 # define OFFSET 100
 # define LINE 20
 
 # include "libft/libft.h"
 # include "mlx/mlx.h"
-//# include "mlxmac/mlx.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
@@ -168,37 +167,14 @@ typedef struct s_screen
 
 typedef struct s_select
 {
-	int		step;	// selection step
-	/*
-
-		step 0:
-		SELECT object:
-		sphere(s)
-		....
-
-		step 1;
-		select object number
-		< >
-
-
-		step 2:
-		select action:
-
-
-		step 3:
-
-		case (rot/transl)			case (redimension)
-		choose axis [x, y, z]		choose dimension
-
-	*/
-	int		obj;	// s(1): sphere, p(2): plane, y(3): cylinder, l(4): light, c(5): camera
-	int		obj_id;	// object n
+	int		step;
+	int		obj;
+	int		obj_id;
 	int		max_id;
-	int		action;	// r(1): rotate, t(2): translate, d(3): redimension
-	char	dimension; // x/w(1): x axis for rotation and translation / dimension 1 for redimension, etc.
-	float	magnitude; // how much should one object be translated/rotated/redimensioned
+	int		action;
+	char	dimension;
+	float	magnitude;
 }	t_select;
-
 
 typedef struct s_data
 {
@@ -221,7 +197,7 @@ void	render(t_data *data);
 t_scene	*reader(char *path, t_scene *scene);
 bool	check_rgb(char **rgb);
 bool	check_ovector(char **ov);
-bool	berror(const char	*msg);
+bool	berror(char *msg);
 void	free_2darr(char	**str);
 bool	get_camera(char **line, t_cam *camera);
 bool	get_light(char **line, t_light *light);
