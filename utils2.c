@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 16:08:12 by bkeskint          #+#    #+#             */
-/*   Updated: 2022/06/16 10:09:25 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/06/16 13:37:37 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ void	dispatch(t_data *data, t_select *sel)
 	f[4][1] = &rot_cam;
 	f[4][2] = NULL;
 	if (f[sel->obj][sel->action])
-		f[sel->obj][sel->action](data, sel->obj_id, sel->dimension, sel->magnitude);
+		f[sel->obj][sel->action](data, sel->obj_id, \
+			sel->dimension, sel->magnitude);
 }
