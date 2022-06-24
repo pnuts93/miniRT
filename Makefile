@@ -6,13 +6,13 @@
 #    By: bkeskint <bkeskint@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/27 11:54:55 by bkeskint          #+#    #+#              #
-#    Updated: 2022/06/05 16:08:35 by bkeskint         ###   ########.fr        #
+#    Updated: 2022/06/24 10:54:56 by bkeskint         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= miniRT
 FLAGS	= -Wall -Wextra -Werror
-SRC_GEN		=	main.c init.c loop_hooks.c purge.c render.c utils.c				\
+SRC_GEN		=	main.c init.c loop_hooks.c purge.c render.c utils.c			\
 			parser.c parser2.c parser3.c vectors.c vectors2.c rotation.c	\
 			rotation2.c	trigonometry.c generic_math.c rot_quater.c			\
 			scene_translate.c scene_rotate.c get_rgb.c	get_rgb_shapes.c	\
@@ -27,32 +27,37 @@ SRC		=	$(SRC_GEN) $(SRC_INTER)
 
 LIBFT	= ./libft
 
-UNAME := $(shell uname)
+EXT_LIB = ./mlx/libmlx.a
 
-ifeq ($(UNAME), Linux)
 MINILIBX = ./mlx
 
-$(NAME): $(OBJ) complibs
+UNAME := $(shell uname)
+
+all : $(EXT_LIB) libft.a $(NAME)
+
+ifeq ($(UNAME), Linux)
+
+$(NAME): $(OBJ)
 	$(CC) $(OBJ) -g $(FLAGS) -L $(LIBFT) -lft -L $(MINILIBX) -lmlx -lXext -lX11 -lm -lz -o $(NAME)
 
 endif
 
 ifeq ($(UNAME), Darwin)
-MINILIBX = ./mlx
+
 
 %.o: %.c
 		${CC} ${FLAGS} -Imlxmac -c $< -o ${<:.c=.o}
 
-$(NAME): $(SRC) complibs
+$(NAME): $(SRC)
 	$(CC) -Lmlx -L $(MINILIBX) -lmlx -framework OpenGL -framework AppKit -L /usr/X11/lib -lXext -lX11 -L $(LIBFT) -lft $(SRC) -o $(NAME)
 
 endif
 
-all : $(NAME)
+$(EXT_LIB):
+		make -C $(MINILIBX)
 
-complibs :
-	cd $(LIBFT) && make -s --no-print-directory
-	cd $(MINILIBX) && make -s --no-print-directory
+libft.a:
+		make -C $(LIBFT)
 
 clean : cleanlibs
 	rm -f $(OBJ)
