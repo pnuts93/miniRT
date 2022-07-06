@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 10:36:04 by pnuti             #+#    #+#             */
-/*   Updated: 2022/06/06 10:39:52 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/07/06 08:30:27 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	render(t_data *data)
 	int		i;
 	int		j;
 
+	translate_scene(data->scene);
+	rotate_scene(data->scene);
 	ray.p1 = data->scene->camera->c;
 	i = 0;
 	while (i < data->screen.h)

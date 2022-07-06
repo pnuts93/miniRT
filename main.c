@@ -6,7 +6,7 @@
 /*   By: pnuti <pnuti@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:28:16 by pnuti             #+#    #+#             */
-/*   Updated: 2022/06/06 12:32:27 by pnuti            ###   ########.fr       */
+/*   Updated: 2022/07/06 08:34:25 by pnuti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ int	main(int argc, char *argv[])
 	init(&data, argv);
 	data.scene->camera->fov_h = data.scene->camera->fov_w * \
 		((float)data.screen.h / (float)data.screen.w);
-	translate_scene(data.scene);
-	rotate_scene(data.scene);
 	loop(&data);
 	return (0);
 }
